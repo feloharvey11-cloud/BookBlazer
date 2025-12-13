@@ -48,8 +48,8 @@
       background-color: #f0f0f0;
     }
 
-    /* Book buttons at bottom */
-    .book-button {
+    /* Book buttons */
+    .book-button, .dropdown-button {
       display: inline-block;
       width: 250px;
       padding: 15px;
@@ -65,13 +65,25 @@
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    .book-button:hover {
+    .book-button:hover, .dropdown-button:hover {
       transform: scale(1.08);
       box-shadow: 0 12px 25px rgba(0,0,0,0.3);
       background-color: #f7f7f7;
     }
+
+    /* Dropdown hidden items */
+    .dropdown-content {
+      display: none;
+      margin-top: -10px;
+    }
+
+    .dropdown-content a {
+      display: block;
+      margin: 10px auto;
+    }
   </style>
 </head>
+
 <body>
 
   <h1>My Books</h1>
@@ -82,13 +94,21 @@
     <button onclick="searchBook()">Search</button>
   </div>
 
-  <!-- BOOK BUTTONS -->
+  <!-- Turkey Capture Button -->
   <a href="turkey-capture.html" class="book-button">Turkey Capture</a>
-  <a href="battle-cats-rise.html" class="book-button">Battle Cats: Rise</a>
-  <a href="battle-cats-invade.html" class="book-button">Battle Cats: Invade</a>
 
-  <!-- JavaScript -->
+  <!-- BATTLE CATS DROPDOWN -->
+  <div>
+    <div class="dropdown-button" onclick="toggleDropdown()">Battle Cats</div>
+
+    <div id="dropdown" class="dropdown-content">
+      <a href="battle-cats-rise.html" class="book-button">Battle Cats: Rise</a>
+      <a href="battle-cats-invade.html" class="book-button">Battle Cats: Invade</a>
+    </div>
+  </div>
+
   <script>
+    /* Search function */
     function searchBook() {
       let text = document.getElementById("searchInput").value.toLowerCase();
 
@@ -98,18 +118,26 @@
         window.location.href = "battle-cats-rise.html";
       } else if (text.includes("invade")) {
         window.location.href = "battle-cats-invade.html";
+      } else if (text.includes("battle")) {
+        toggleDropdown();
       } else {
         alert("No book found!");
       }
     }
 
-    // Press Enter to search
+    /* Enter key triggers search */
     document.getElementById("searchInput")
       .addEventListener("keypress", function(event) {
         if (event.key === "Enter") {
           searchBook();
         }
       });
+
+    /* Dropdown toggle */
+    function toggleDropdown() {
+      let box = document.getElementById("dropdown");
+      box.style.display = (box.style.display === "block") ? "none" : "block";
+    }
   </script>
 
 </body>

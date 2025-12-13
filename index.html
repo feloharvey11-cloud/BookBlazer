@@ -1,89 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Harvey's Bookshelf</title>
-
-  <style>
-    body {
-      background: linear-gradient(to bottom, #dff4ff, #ffffff);
-      font-family: Arial, sans-serif;
-      text-align: center;
-    }
-
-    h1 {
-      color: #0a4da3;
-      text-shadow: 3px 3px 8px rgba(0,0,0,0.25);
-      animation: rainbow 4s infinite alternate;
-    }
-
-    /* FADE IN */
-    .fade {
-      opacity: 0;
-      animation: fadeIn 2s forwards;
-    }
-
-    .fade2 {
-      opacity: 0;
-      animation: fadeIn 2s forwards 0.5s;
-    }
-
-    .fade3 {
-      opacity: 0;
-      animation: fadeIn 2s forwards 1s;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* RAINBOW COLOR ANIMATION */
-    @keyframes rainbow {
-      0% { color: red; }
-      20% { color: orange; }
-      40% { color: yellow; }
-      60% { color: green; }
-      80% { color: blue; }
-      100% { color: purple; }
-    }
-
-    /* BUTTON STYLE */
-    .book-button {
-      display: block;
-      width: 320px;
-      margin: 25px auto;
-      padding: 20px;
-      background: white;
-      border-radius: 18px;
-      border: 4px solid gold;
-      box-shadow: 0px 10px 20px rgba(0,0,0,0.25);
-      transition: 0.3s;
-      animation: rainbow 4s infinite alternate;
-      text-decoration: none;
-      color: black;
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    .book-button:hover {
-      transform: scale(1.1);
-      box-shadow: 0px 15px 30px rgba(0,0,0,0.35);
-    }
-  </style>
+  <title>Our Bookshelf</title>
 </head>
-
 <body>
+  <h1>Our Bookshelf</h1>
 
-  <h1 class="fade">Harvey's Bookshelf</h1>
-
-  <!-- BOOK 1 -->
-  <a href="turkey-capture.html" class="book-button fade">🦃 Turkey Capture</a>
-
-  <!-- BOOK 2 -->
-  <a href="battle-cats-rise.html" class="book-button fade2">🐱 Battle Cats: Rise</a>
-
-  <!-- BOOK 3 -->
-  <a href="battle-cats-invade.html" class="book-button fade3">🐾 Battle Cats: Invade</a>
+  <ul>
+    <li><a href="turkey-capture.html">Book 1: Turkey Capture!</a></li>
+    <li><a href="battle-cats-rise.html">Book 2: The Battle Cats: Rise</a></li>
+    <li><a href="battle-cats-invade.html">Book 3: The Battle Cats: Invade</a></li>
+  </ul>
 
 </body>
 </html>
+

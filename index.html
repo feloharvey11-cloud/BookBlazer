@@ -48,7 +48,7 @@
       background-color: #f0f0f0;
     }
 
-    /* Book buttons */
+    /* Buttons */
     .book-button, .dropdown-button {
       display: inline-block;
       width: 250px;
@@ -71,10 +71,18 @@
       background-color: #f7f7f7;
     }
 
-    /* Dropdown hidden items */
+    /* Buttons side‑by‑side */
+    .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    /* Dropdown */
     .dropdown-content {
       display: none;
-      margin-top: -10px;
+      margin-top: -5px;
     }
 
     .dropdown-content a {
@@ -88,27 +96,30 @@
 
   <h1>My Books</h1>
 
-  <!-- SEARCH BAR -->
+  <!-- SEARCH -->
   <div class="search-box">
     <input type="text" id="searchInput" placeholder="Search for a book...">
     <button onclick="searchBook()">Search</button>
   </div>
 
-  <!-- Turkey Capture Button -->
-  <a href="turkey-capture.html" class="book-button">Turkey Capture</a>
+  <!-- BUTTONS SIDE‑BY‑SIDE -->
+  <div class="button-row">
+    <!-- Turkey Capture -->
+    <a href="turkey-capture.html" class="book-button">Turkey Capture</a>
 
-  <!-- BATTLE CATS DROPDOWN -->
-  <div>
-    <div class="dropdown-button" onclick="toggleDropdown()">Battle Cats</div>
-
-    <div id="dropdown" class="dropdown-content">
-      <a href="battle-cats-rise.html" class="book-button">Battle Cats: Rise</a>
-      <a href="battle-cats-invade.html" class="book-button">Battle Cats: Invade</a>
+    <!-- Holiday Book Dropdown -->
+    <div>
+      <div class="dropdown-button" onclick="toggleDropdown()">Holiday Books</div>
+      <div id="dropdown" class="dropdown-content">
+        <a href="turkey-capture.html" class="book-button">Turkey Capture</a>
+        <a href="battle-cats-rise.html" class="book-button">Battle Cats: Rise</a>
+        <a href="battle-cats-invade.html" class="book-button">Battle Cats: Invade</a>
+      </div>
     </div>
   </div>
 
   <script>
-    /* Search function */
+    /* SEARCH */
     function searchBook() {
       let text = document.getElementById("searchInput").value.toLowerCase();
 
@@ -118,19 +129,17 @@
         window.location.href = "battle-cats-rise.html";
       } else if (text.includes("invade")) {
         window.location.href = "battle-cats-invade.html";
-      } else if (text.includes("battle")) {
+      } else if (text.includes("holiday") || text.includes("battle")) {
         toggleDropdown();
       } else {
         alert("No book found!");
       }
     }
 
-    /* Enter key triggers search */
+    /* Enter key searches */
     document.getElementById("searchInput")
       .addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-          searchBook();
-        }
+        if (event.key === "Enter") searchBook();
       });
 
     /* Dropdown toggle */

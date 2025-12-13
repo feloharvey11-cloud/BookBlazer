@@ -4,7 +4,6 @@
   <title>My Book Collection</title>
   <style>
     body {
-      /* Smooth vertical rainbow gradient */
       background: linear-gradient(
         to bottom,
         red,
@@ -23,10 +22,26 @@
       color: white;
     }
 
+    /* SEARCH BAR STYLING */
+    .search-container {
+      margin-bottom: 40px;
+    }
+
+    .search-box {
+      width: 60%;
+      padding: 12px 18px;
+      font-size: 18px;
+      border-radius: 25px;
+      border: none;
+      outline: none;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    }
+
+    /* HEADER */
     h1 {
       font-size: 50px;
       text-shadow: 3px 3px 6px #00000080;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
 
     /* BUTTON STYLE */
@@ -46,27 +61,33 @@
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    /* Hover effect */
     .book-button:hover {
       transform: scale(1.08);
       box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
       background-color: #f0f0f0;
     }
 
+    /* BOOK SECTION AT BOTTOM */
+    .book-section {
+      margin-top: 80px;
+    }
   </style>
 </head>
 <body>
 
   <h1>My Books</h1>
 
-  <!-- BOOK 1 -->
-  <a href="turkey-capture.html" class="book-button">Turkey Capture</a>
+  <!-- SEARCH BAR -->
+  <div class="search-container">
+    <input type="text" class="search-box" placeholder="Search for a book...">
+  </div>
 
-  <!-- BOOK 2 -->
-  <a href="battle-cats-rise.html" class="book-button">Battle Cats: Rise</a>
-
-  <!-- BOOK 3 -->
-  <a href="battle-cats-invade.html" class="book-button">Battle Cats: Invade</a>
+  <!-- BOOK BUTTONS AT THE BOTTOM -->
+  <div class="book-section">
+    <a href="turkey-capture.html" class="book-button">Turkey Capture</a>
+    <a href="battle-cats-rise.html" class="book-button">Battle Cats: Rise</a>
+    <a href="battle-cats-invade.html" class="book-button">Battle Cats: Invade</a>
+  </div>
 
 </body>
 </html>

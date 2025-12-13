@@ -4,6 +4,7 @@
   <title>My Book Collection</title>
   <style>
     body {
+      /* Smooth vertical rainbow gradient */
       background: linear-gradient(
         to bottom,
         red,
@@ -14,57 +15,57 @@
         indigo,
         violet
       );
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 40px;
+      color: white;
     }
 
     h1 {
-      color: white;
-      text-shadow: 3px 3px 8px #00000080;
       font-size: 50px;
+      text-shadow: 3px 3px 6px #00000080;
+      margin-bottom: 40px;
     }
 
-    /* --- BUTTON STYLE --- */
+    /* BUTTON STYLE */
     .book-button {
       display: inline-block;
-      width: 250px;
+      width: 260px;
       padding: 15px;
       margin: 20px;
       background-color: white;
       color: #333;
       text-decoration: none;
-      font-size: 20px;
+      font-size: 22px;
       font-weight: bold;
       border-radius: 15px;
-      border: 3px solid gold;
-
-      /* shadow */
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-
-      /* animations */
+      border: 3px solid #fff;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
       transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    /* Hover effects */
+    /* Hover effect */
     .book-button:hover {
       transform: scale(1.08);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
-      background-color: #f7f7f7;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+      background-color: #f0f0f0;
     }
+
   </style>
 </head>
 <body>
 
   <h1>My Books</h1>
 
-  <!-- BOOK 1 BUTTON -->
+  <!-- BOOK 1 -->
   <a href="turkey-capture.html" class="book-button">Turkey Capture</a>
 
-  <!-- BOOK 2 BUTTON -->
+  <!-- BOOK 2 -->
   <a href="battle-cats-rise.html" class="book-button">Battle Cats: Rise</a>
 
-  <!-- BOOK 3 BUTTON -->
+  <!-- BOOK 3 -->
   <a href="battle-cats-invade.html" class="book-button">Battle Cats: Invade</a>
 
 </body>

@@ -1,76 +1,89 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Book Collection</title>
+  <title>Harvey's Bookshelf</title>
 
   <style>
     body {
-      background: linear-gradient(to bottom, lightblue, white);
+      background: linear-gradient(to bottom, #dff4ff, #ffffff);
       font-family: Arial, sans-serif;
       text-align: center;
-      padding: 40px;
     }
 
     h1 {
-      color: gold;
-      text-shadow: 2px 2px 4px #00000050;
+      color: #0a4da3;
+      text-shadow: 3px 3px 8px rgba(0,0,0,0.25);
+      animation: rainbow 4s infinite alternate;
     }
 
-    /* --- BUTTON STYLE --- */
+    /* FADE IN */
+    .fade {
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+    }
+
+    .fade2 {
+      opacity: 0;
+      animation: fadeIn 2s forwards 0.5s;
+    }
+
+    .fade3 {
+      opacity: 0;
+      animation: fadeIn 2s forwards 1s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RAINBOW COLOR ANIMATION */
+    @keyframes rainbow {
+      0% { color: red; }
+      20% { color: orange; }
+      40% { color: yellow; }
+      60% { color: green; }
+      80% { color: blue; }
+      100% { color: purple; }
+    }
+
+    /* BUTTON STYLE */
     .book-button {
-      display: inline-block;
-      width: 250px;
-      padding: 15px;
-      margin: 20px;
-      background-color: white;
-      color: #333;
+      display: block;
+      width: 320px;
+      margin: 25px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 18px;
+      border: 4px solid gold;
+      box-shadow: 0px 10px 20px rgba(0,0,0,0.25);
+      transition: 0.3s;
+      animation: rainbow 4s infinite alternate;
       text-decoration: none;
-      font-size: 20px;
+      color: black;
+      font-size: 22px;
       font-weight: bold;
-
-      border-radius: 15px;
-      border: 3px solid gold;
-
-      /* shadow effect */
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-
-      /* smooth animations */
-      transition: transform 0.2s, box-shadow 0.2s;
     }
 
-    /* Hover effects */
     .book-button:hover {
-      transform: scale(1.08);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
-      background-color: #f7f7f7;
+      transform: scale(1.1);
+      box-shadow: 0px 15px 30px rgba(0,0,0,0.35);
     }
-
-    /* Caption under button */
-    .caption {
-      margin-top: 8px;
-      font-size: 16px;
-      color: #444;
-    }
-
   </style>
 </head>
 
 <body>
 
-  <h1>My Books</h1>
+  <h1 class="fade">Harvey's Bookshelf</h1>
 
-  <!-- BOOK 1 BUTTON -->
-  <a href="turkey-capture.html" class="book-button">Turkey Capture</a>
-  <div class="caption">Home</div>
+  <!-- BOOK 1 -->
+  <a href="turkey-capture.html" class="book-button fade">🦃 Turkey Capture</a>
 
-  <!-- BOOK 2 BUTTON -->
-  <a href="battle-cats-rise.html" class="book-button">Battle Cats: Rise</a>
-  <div class="caption">Home</div>
+  <!-- BOOK 2 -->
+  <a href="battle-cats-rise.html" class="book-button fade2">🐱 Battle Cats: Rise</a>
 
-  <!-- BOOK 3 BUTTON -->
-  <a href="battle-cats-invade.html" class="book-button">Battle Cats: Invade</a>
-  <div class="caption">Home</div>
+  <!-- BOOK 3 -->
+  <a href="battle-cats-invade.html" class="book-button fade3">🐾 Battle Cats: Invade</a>
 
 </body>
 </html>
-

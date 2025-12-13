@@ -1,153 +1,96 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Book Collection</title>
+  <title>My Books</title>
   <style>
     body {
-      background: linear-gradient(
-        to bottom,
-        red, orange, yellow, green, blue, indigo, violet
-      );
-      background-attachment: fixed;
+      background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+      background-size: 400% 400%;
+      animation: rainbow 12s ease infinite;
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 40px;
       color: white;
     }
 
+    @keyframes rainbow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     h1 {
-      text-shadow: 3px 3px 6px #00000060;
-      font-size: 42px;
+      text-shadow: 3px 3px 8px #00000080;
     }
 
-    /* Search bar */
-    .search-box {
-      margin-bottom: 40px;
-    }
-
-    input[type="text"] {
-      width: 300px;
-      padding: 12px;
-      border: none;
-      border-radius: 8px;
-      font-size: 18px;
-    }
-
-    button {
-      padding: 12px 20px;
-      margin-left: 10px;
-      font-size: 18px;
-      border: none;
-      border-radius: 8px;
+    /* MAIN CATEGORY BUTTONS */
+    .big-button {
       background-color: white;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    button:hover {
-      background-color: #f0f0f0;
-    }
-
-    /* Buttons */
-    .book-button, .dropdown-button {
-      display: inline-block;
-      width: 250px;
-      padding: 15px;
+      color: black;
+      padding: 20px 40px;
       margin: 20px;
-      background-color: white;
-      color: #333;
-      text-decoration: none;
-      font-size: 20px;
-      font-weight: bold;
+      font-size: 26px;
       border-radius: 15px;
-      border: 3px solid gold;
-      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-      transition: transform 0.2s, box-shadow 0.2s;
+      border: 3px solid #444;
+      cursor: pointer;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+      transition: 0.25s;
     }
-
-    .book-button:hover, .dropdown-button:hover {
+    .big-button:hover {
       transform: scale(1.08);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.3);
-      background-color: #f7f7f7;
     }
 
-    /* Buttons side‑by‑side */
-    .button-row {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
-
-    /* Dropdown */
-    .dropdown-content {
+    /* SUB BUTTONS */
+    .sub-buttons {
       display: none;
-      margin-top: -5px;
+      margin-top: 20px;
     }
 
-    .dropdown-content a {
-      display: block;
-      margin: 10px auto;
+    .sub-button {
+      display: inline-block;
+      background-color: #fff;
+      color: #333;
+      padding: 15px 25px;
+      margin: 10px;
+      font-size: 20px;
+      border-radius: 12px;
+      text-decoration: none;
+      border: 2px solid #222;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      transition: 0.2s;
+    }
+    .sub-button:hover {
+      transform: scale(1.1);
+      background-color: #f2f2f2;
     }
   </style>
+
+  <script>
+    function toggle(id) {
+      const box = document.getElementById(id);
+      box.style.display = (box.style.display === "block") ? "none" : "block";
+    }
+  </script>
 </head>
 
 <body>
 
   <h1>My Books</h1>
 
-  <!-- SEARCH -->
-  <div class="search-box">
-    <input type="text" id="searchInput" placeholder="Search for a book...">
-    <button onclick="searchBook()">Search</button>
+  <!-- MAIN BUTTONS -->
+  <button class="big-button" onclick="toggle('holiday')">Holiday Books</button>
+  <button class="big-button" onclick="toggle('battlecats')">Battle Cats</button>
+
+  <!-- HOLIDAY SUB BUTTONS -->
+  <div id="holiday" class="sub-buttons">
+    <a href="turkey-capture.html" class="sub-button">Turkey Capture</a>
   </div>
 
-  <!-- BUTTONS SIDE‑BY‑SIDE -->
-  <div class="button-row">
-    <!-- Turkey Capture -->
-    <a href="turkey-capture.html" class="book-button">Turkey Capture</a>
-
-    <!-- Holiday Book Dropdown -->
-    <div>
-      <div class="dropdown-button" onclick="toggleDropdown()">Holiday Books</div>
-      <div id="dropdown" class="dropdown-content">
-        <a href="turkey-capture.html" class="book-button">Turkey Capture</a>
-        <a href="battle-cats-rise.html" class="book-button">Battle Cats: Rise</a>
-        <a href="battle-cats-invade.html" class="book-button">Battle Cats: Invade</a>
-      </div>
-    </div>
+  <!-- BATTLE CATS SUB BUTTONS -->
+  <div id="battlecats" class="sub-buttons">
+    <a href="battle-cats-rise.html" class="sub-button">Battle Cats Rise</a>
+    <a href="battle-cats-invade.html" class="sub-button">Battle Cats Invade</a>
   </div>
-
-  <script>
-    /* SEARCH */
-    function searchBook() {
-      let text = document.getElementById("searchInput").value.toLowerCase();
-
-      if (text.includes("turkey")) {
-        window.location.href = "turkey-capture.html";
-      } else if (text.includes("rise")) {
-        window.location.href = "battle-cats-rise.html";
-      } else if (text.includes("invade")) {
-        window.location.href = "battle-cats-invade.html";
-      } else if (text.includes("holiday") || text.includes("battle")) {
-        toggleDropdown();
-      } else {
-        alert("No book found!");
-      }
-    }
-
-    /* Enter key searches */
-    document.getElementById("searchInput")
-      .addEventListener("keypress", function(event) {
-        if (event.key === "Enter") searchBook();
-      });
-
-    /* Dropdown toggle */
-    function toggleDropdown() {
-      let box = document.getElementById("dropdown");
-      box.style.display = (box.style.display === "block") ? "none" : "block";
-    }
-  </script>
 
 </body>
 </html>

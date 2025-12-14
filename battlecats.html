@@ -4,50 +4,52 @@
   <title>Battle Cats</title>
   <style>
     body {
-      background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
-      background-size: 400% 400%;
-      animation: rainbow 12s ease infinite;
+      background: linear-gradient(90deg, orange, gold);
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 40px;
       color: white;
     }
-    @keyframes rainbow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+    h1 { text-shadow: 3px 3px 8px #00000080; }
 
     .sub-button {
       display: inline-block;
       background-color: #fff;
       color: #333;
       padding: 15px 25px;
-      margin: 10px;
-      font-size: 20px;
+      margin: 20px;
+      font-size: 22px;
       border-radius: 12px;
       text-decoration: none;
-      border: 2px solid #222;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      border: 3px solid black;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.25);
       transition: 0.2s;
     }
-
     .sub-button:hover {
       transform: scale(1.1);
-      background-color: #f2f2f2;
     }
 
+    /* HOME BUTTON */
+    .home-link {
+      display: inline-block;
+      margin-top: 30px;
+      font-size: 20px;
+      color: white;
+      text-decoration: underline;
+    }
+    .home-link:hover {
+      color: #ddd;
+    }
   </style>
 </head>
-<body>
 
+<body>
   <h1>Battle Cats</h1>
 
   <a href="battle-cats-rise.html" class="sub-button">Battle Cats Rise</a>
   <a href="battle-cats-invade.html" class="sub-button">Battle Cats Invade</a>
 
   <br><br>
-  <a href="index.html" style="color:white;">⬅ Back to Main Page</a>
-
+  <a href="index.html" class="home-link">🏠 Home Page</a>
 </body>
 </html>

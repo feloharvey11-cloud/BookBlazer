@@ -18,25 +18,23 @@
       100% { background-position: 0% 50%; }
     }
 
+    h1 { text-shadow: 3px 3px 8px #00000080; }
+
     /* SEARCH BAR */
-    .search-box {
-      margin-bottom: 30px;
-    }
-    input[type=text] {
+    #searchBox {
       padding: 12px;
-      width: 250px;
-      border-radius: 8px;
-      border: none;
-      font-size: 18px;
-    }
-    #result {
-      margin-top: 10px;
+      width: 60%;
       font-size: 20px;
-      color: yellow;
-      font-weight: bold;
+      border-radius: 8px;
     }
 
-    /* MAIN BUTTONS */
+    #suggestion {
+      margin-top: 12px;
+      font-size: 20px;
+      color: yellow;
+    }
+
+    /* MAIN CATEGORY BUTTONS */
     .big-button {
       background-color: white;
       color: black;
@@ -55,36 +53,51 @@
   </style>
 
   <script>
+    const books = {
+      "turkey capture": "turkey-capture.html",
+      "battle cats rise": "battle-cats-rise.html",
+      "battle cats invade": "battle-cats-invade.html"
+    };
+
+    function normalize(text) {
+      return text.toLowerCase().trim();
+    }
+
     function searchBook(event) {
-      event.preventDefault();
+      if (event.key !== "Enter") return;  // make Enter work only
 
-      const text = document.getElementById("search").value.toLowerCase();
-      const result = document.getElementById("result");
+      const input = normalize(document.getElementById("searchBox").value);
+      const suggestionBox = document.getElementById("suggestion");
 
-      if (text.includes("tur") || text.includes("tury")) {
-        result.innerHTML = "Did you mean: <b>Turkey Capture</b>?";
-      } else if (text.includes("battle") || text.includes("cat")) {
-        result.innerHTML = "Did you mean: <b>Battle Cats Rise</b> or <b>Battle Cats Invade</b>?";
+      let bestMatch = null;
+
+      for (let title in books) {
+        if (title.includes(input)) {
+          bestMatch = title;
+          break;
+        }
+      }
+
+      if (bestMatch) {
+        suggestionBox.innerHTML = `Did you mean <a href="${books[bestMatch]}">${bestMatch}</a>?`;
       } else {
-        result.innerHTML = "No matches found.";
+        suggestionBox.innerHTML = "No similar book found.";
       }
     }
   </script>
-
 </head>
-<body>
 
+<body>
   <h1>My Books</h1>
 
   <!-- SEARCH BAR -->
-  <form class="search-box" onsubmit="searchBook(event)">
-    <input type="text" id="search" placeholder="Search books...">
-  </form>
-  <div id="result"></div>
+  <input id="searchBox" type="text" placeholder="Search for a book..." onkeydown="searchBook(event)">
+  <div id="suggestion"></div>
 
-  <!-- MAIN BUTTONS (LINKS TO OTHER HTML FILES) -->
-  <a href="holiday.html"><button class="big-button">Holiday Books</button></a>
-  <a href="battlecats.html"><button class="big-button">Battle Cats</button></a>
-
+  <!-- MAIN BUTTONS -->
+  <div>
+    <button class="big-button" onclick="location.href='holiday.html'">Holiday Books</button>
+    <button class="big-button" onclick="location.href='battlecats.html'">Battle Cats</button>
+  </div>
 </body>
 </html>

@@ -2,9 +2,7 @@
 <html>
 <head>
   <title>My Books</title>
-
   <style>
-    /* ---- RAINBOW BACKGROUND ---- */
     body {
       background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
       background-size: 400% 400%;
@@ -14,39 +12,31 @@
       padding: 40px;
       color: white;
     }
-
     @keyframes rainbow {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
 
-    h1 {
-      text-shadow: 3px 3px 8px #00000080;
-    }
-
-    /* ---- SEARCH BAR ---- */
-    .search-container {
+    /* SEARCH BAR */
+    .search-box {
       margin-bottom: 30px;
     }
-
-    #searchBar {
-      width: 300px;
-      padding: 10px;
-      font-size: 18px;
+    input[type=text] {
+      padding: 12px;
+      width: 250px;
       border-radius: 8px;
       border: none;
-    }
-
-    #searchBtn {
-      padding: 10px 20px;
       font-size: 18px;
-      border-radius: 8px;
-      border: none;
-      cursor: pointer;
+    }
+    #result {
+      margin-top: 10px;
+      font-size: 20px;
+      color: yellow;
+      font-weight: bold;
     }
 
-    /* ---- MAIN CATEGORY BUTTONS ---- */
+    /* MAIN BUTTONS */
     .big-button {
       background-color: white;
       color: black;
@@ -59,89 +49,26 @@
       box-shadow: 0 8px 15px rgba(0,0,0,0.3);
       transition: 0.25s;
     }
-
     .big-button:hover {
       transform: scale(1.08);
-    }
-
-    /* ---- SUB BUTTONS ---- */
-    .sub-buttons {
-      display: none;
-      margin-top: 20px;
-    }
-
-    .sub-button {
-      display: inline-block;
-      background-color: #fff;
-      color: #333;
-      padding: 15px 25px;
-      margin: 10px;
-      font-size: 20px;
-      border-radius: 12px;
-      text-decoration: none;
-      border: 2px solid #222;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-      transition: 0.2s;
-    }
-
-    .sub-button:hover {
-      transform: scale(1.1);
-      background-color: #f2f2f2;
     }
   </style>
 
   <script>
-    /* ------ TOGGLE SUB MENU ------ */
-    function toggle(id) {
-      const box = document.getElementById(id);
-      box.style.display = (box.style.display === "block") ? "none" : "block";
-    }
+    function searchBook(event) {
+      event.preventDefault();
 
-    /* ------ SEARCH SYSTEM ------ */
-    const books = {
-      "turkey capture": "turkey-capture.html",
-      "battle cats rise": "battle-cats-rise.html",
-      "battle cats invade": "battle-cats-invade.html"
-    };
+      const text = document.getElementById("search").value.toLowerCase();
+      const result = document.getElementById("result");
 
-    function searchBooks() {
-      let input = document.getElementById("searchBar").value.toLowerCase().trim();
-
-      if (input === "") {
-        alert("Please type something to search.");
-        return;
-      }
-
-      // exact match
-      if (books[input]) {
-        window.location.href = books[input];
-        return;
-      }
-
-      // find closest match
-      let suggestions = [];
-
-      for (let title in books) {
-        if (title.includes(input) || input.includes(title.substring(0, 3))) {
-          suggestions.push(title);
-        }
-      }
-
-      if (suggestions.length > 0) {
-        alert("Did you mean: " + suggestions.join(", ") + "?");
+      if (text.includes("tur") || text.includes("tury")) {
+        result.innerHTML = "Did you mean: <b>Turkey Capture</b>?";
+      } else if (text.includes("battle") || text.includes("cat")) {
+        result.innerHTML = "Did you mean: <b>Battle Cats Rise</b> or <b>Battle Cats Invade</b>?";
       } else {
-        alert("No books found. Try typing part of the book title.");
+        result.innerHTML = "No matches found.";
       }
     }
-
-    // allow ENTER key to work
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById("searchBar").addEventListener("keypress", function(e) {
-        if (e.key === "Enter") {
-          searchBooks();
-        }
-      });
-    });
   </script>
 
 </head>
@@ -150,25 +77,14 @@
   <h1>My Books</h1>
 
   <!-- SEARCH BAR -->
-  <div class="search-container">
-    <input id="searchBar" type="text" placeholder="Search for a book...">
-    <button id="searchBtn" onclick="searchBooks()">Search</button>
-  </div>
+  <form class="search-box" onsubmit="searchBook(event)">
+    <input type="text" id="search" placeholder="Search books...">
+  </form>
+  <div id="result"></div>
 
-  <!-- MAIN BUTTONS -->
-  <button class="big-button" onclick="toggle('holiday')">Holiday Books</button>
-  <button class="big-button" onclick="toggle('battlecats')">Battle Cats</button>
-
-  <!-- HOLIDAY SUB BUTTONS -->
-  <div id="holiday" class="sub-buttons">
-    <a href="turkey-capture.html" class="sub-button">Turkey Capture</a>
-  </div>
-
-  <!-- BATTLE CATS SUB BUTTONS -->
-  <div id="battlecats" class="sub-buttons">
-    <a href="battle-cats-rise.html" class="sub-button">Battle Cats Rise</a>
-    <a href="battle-cats-invade.html" class="sub-button">Battle Cats Invade</a>
-  </div>
+  <!-- MAIN BUTTONS (LINKS TO OTHER HTML FILES) -->
+  <a href="holiday.html"><button class="big-button">Holiday Books</button></a>
+  <a href="battlecats.html"><button class="big-button">Battle Cats</button></a>
 
 </body>
 </html>

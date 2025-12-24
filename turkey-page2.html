@@ -8,36 +8,51 @@
       padding: 40px;
       line-height: 1.6;
       font-size: 20px;
+      margin: 0;
     }
-    h1 {
-      margin-bottom: 25px;
-      font-size: 28px;
+
+    .left-zone, .right-zone {
+      position: fixed;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      cursor: pointer;
     }
-    /* HOME BUTTON (same on every page) */
-    .home-button {
-      display: inline-block;
-      margin-top: 30px;
-      padding: 10px 20px;
+
+    .left-zone {
+      left: 0;
+    }
+
+    .right-zone {
+      right: 0;
+    }
+
+    .page-number {
+      position: fixed;
+      bottom: 15px;
+      width: 100%;
+      text-align: center;
       font-size: 18px;
-      background-color: white;
-      color: black;
-      text-decoration: none;
-      border-radius: 8px;
-      border: 2px solid black;
-    }
-    .home-button:hover {
-      background-color: #eee;
+      color: gray;
     }
   </style>
 </head>
 <body>
+
   <h1>The Turkey’s Perspective</h1>
   <p>
-    That night, the turkey was scared.  
-    It was almost Thanksgiving, and he knew what that meant.  
-    Suddenly, he saw something shiny a few yards away.
+    That night, the turkey was scared. It was almost Thanksgiving,
+    and you know what that means for the turkey.
+    Suddenly, the turkey saw something shiny a few yards away.
   </p>
 
-  <a class="home-button" href="index.html">🏠 Home</a>
+  <!-- LEFT = PREVIOUS -->
+  <div class="left-zone" onclick="location.href='turkey-page1.html'"></div>
+
+  <!-- RIGHT = DISABLED (no next yet) -->
+  <div class="right-zone"></div>
+
+  <div class="page-number">Page 2</div>
+
 </body>
 </html>

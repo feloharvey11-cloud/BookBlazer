@@ -5,27 +5,11 @@
   <style>
     body {
       font-family: Arial, sans-serif;
+      margin: 0;
       padding: 40px;
       line-height: 1.6;
       font-size: 20px;
-      margin: 0;
-    }
-
-    /* CLICK AREAS */
-    .left-zone, .right-zone {
-      position: fixed;
-      top: 0;
-      width: 50%;
-      height: 100%;
-      cursor: pointer;
-    }
-
-    .left-zone {
-      left: 0;
-    }
-
-    .right-zone {
-      right: 0;
+      position: relative;
     }
 
     /* PAGE NUMBER */
@@ -34,9 +18,20 @@
       bottom: 15px;
       width: 100%;
       text-align: center;
-      font-size: 18px;
+      font-size: 16px;
       color: gray;
     }
+
+    /* CLICK ZONES */
+    .left-zone, .right-zone {
+      position: fixed;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      cursor: pointer;
+    }
+    .left-zone { left: 0; }
+    .right-zone { right: 0; }
   </style>
 </head>
 <body>
@@ -48,14 +43,12 @@
     For some reason, super random turkeys come out at night.
   </p>
 
-  <!-- LEFT = PREVIOUS -->
+  <!-- CLICK AREAS -->
   <div class="left-zone" onclick="location.href='turkey-cover.html'"></div>
-
-  <!-- RIGHT = NEXT -->
   <div class="right-zone" onclick="location.href='turkey-page2.html'"></div>
 
   <!-- PAGE NUMBER -->
-  <div class="page-number">Page 1</div>
+  <div class="page-number">1</div>
 
 </body>
 </html>

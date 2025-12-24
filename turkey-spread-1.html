@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Turkey Capture – Pages 1–2</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .spread {
+      display: flex;
+      height: 100vh;
+    }
+
+    .page {
+      width: 50%;
+      padding: 40px;
+      box-sizing: border-box;
+      font-size: 20px;
+      line-height: 1.6;
+    }
+
+    .left {
+      background: #f7f7f7;
+      border-right: 1px solid #ccc;
+    }
+
+    .right {
+      background: white;
+    }
+
+    /* PAGE NUMBERS */
+    .page-number {
+      position: fixed;
+      bottom: 15px;
+      width: 50%;
+      text-align: center;
+      font-size: 16px;
+      color: gray;
+    }
+
+    .num-left { left: 0; }
+    .num-right { right: 0; }
+
+    /* CLICK ZONES */
+    .left-zone, .right-zone {
+      position: fixed;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .left-zone { left: 0; }
+    .right-zone { right: 0; }
+  </style>
+</head>
+<body>
+
+  <div class="spread">
+    <!-- LEFT PAGE (Page 2) -->
+    <div class="page left">
+      <h1>The Turkey’s Perspective</h1>
+      <p>
+        That night, the turkey was scared. It was almost Thanksgiving,
+        and you know what that means for the turkey.
+        Suddenly, the turkey saw something shiny a few yards away.
+      </p>
+    </div>
+
+    <!-- RIGHT PAGE (Page 1) -->
+    <div class="page right">
+      <h1>Max and His Family’s Perspective</h1>
+      <p>
+        Thanksgiving is coming up, but there is one problem:
+        Max and his family don’t have a turkey.
+        They also don’t want to buy one.
+        For some reason, super random turkeys come out at night.
+      </p>
+    </div>
+  </div>
+
+  <!-- PAGE NUMBERS -->
+  <div class="page-number num-left">2</div>
+  <div class="page-number num-right">1</div>
+
+  <!-- CLICK AREAS -->
+  <div class="left-zone" onclick="location.href='turkey-cover.html'"></div>
+  <div class="right-zone" onclick="location.href='turkey-spread-2.html'"></div>
+
+</body>
+</html>

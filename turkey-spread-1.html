@@ -8,7 +8,7 @@
       font-family: Arial, sans-serif;
     }
 
-    .spread {
+    .book {
       display: flex;
       height: 100vh;
     }
@@ -22,29 +22,11 @@
     }
 
     .left {
-      background: #f7f7f7;
-      border-right: 1px solid #ccc;
+      border-right: 2px solid #ddd;
     }
-
-    .right {
-      background: white;
-    }
-
-    /* PAGE NUMBERS */
-    .page-number {
-      position: fixed;
-      bottom: 15px;
-      width: 50%;
-      text-align: center;
-      font-size: 16px;
-      color: gray;
-    }
-
-    .num-left { left: 0; }
-    .num-right { right: 0; }
 
     /* CLICK ZONES */
-    .left-zone, .right-zone {
+    .click-left, .click-right {
       position: fixed;
       top: 0;
       width: 50%;
@@ -52,42 +34,48 @@
       cursor: pointer;
     }
 
-    .left-zone { left: 0; }
-    .right-zone { right: 0; }
+    .click-left { left: 0; }
+    .click-right { right: 0; }
+
+    /* PAGE NUMBERS */
+    .page-number {
+      position: fixed;
+      bottom: 15px;
+      width: 100%;
+      text-align: center;
+      color: gray;
+      font-size: 16px;
+    }
   </style>
 </head>
 <body>
 
-  <div class="spread">
-    <!-- LEFT PAGE (Page 2) -->
+  <div class="book">
+    <!-- PAGE 1 (LEFT) -->
     <div class="page left">
-      <h1>The Turkey’s Perspective</h1>
-      <p>
-        That night, the turkey was scared. It was almost Thanksgiving,
-        and you know what that means for the turkey.
-        Suddenly, the turkey saw something shiny a few yards away.
-      </p>
-    </div>
-
-    <!-- RIGHT PAGE (Page 1) -->
-    <div class="page right">
-      <h1>Max and His Family’s Perspective</h1>
+      <h2>Page 1</h2>
       <p>
         Thanksgiving is coming up, but there is one problem:
         Max and his family don’t have a turkey.
-        They also don’t want to buy one.
-        For some reason, super random turkeys come out at night.
+      </p>
+    </div>
+
+    <!-- PAGE 2 (RIGHT) -->
+    <div class="page">
+      <h2>Page 2</h2>
+      <p>
+        That night, the turkey was scared.
+        It was almost Thanksgiving.
       </p>
     </div>
   </div>
 
-  <!-- PAGE NUMBERS -->
-  <div class="page-number num-left">2</div>
-  <div class="page-number num-right">1</div>
+  <!-- NAVIGATION -->
+  <div class="click-left" onclick="location.href='turkey-cover.html'"></div>
+  <div class="click-right" onclick="location.href='spread-2.html'"></div>
 
-  <!-- CLICK AREAS -->
-  <div class="left-zone" onclick="location.href='turkey-cover.html'"></div>
-  <div class="right-zone" onclick="location.href='turkey-spread-2.html'"></div>
+  <!-- PAGE NUMBERS -->
+  <div class="page-number">1 — 2</div>
 
 </body>
 </html>

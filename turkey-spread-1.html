@@ -1,81 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Turkey Capture – Pages 1–2</title>
+  <title>Turkey Capture – Spread 1</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
+      background: #ccc; /* outside background */
     }
 
+    /* BOOK CONTAINER */
     .book {
       display: flex;
+      width: 100vw;
       height: 100vh;
+      background: #f5f5f5;
     }
 
+    /* LEFT & RIGHT PAGES */
     .page {
       width: 50%;
-      padding: 40px;
+      padding: 60px;
       box-sizing: border-box;
-      font-size: 20px;
-      line-height: 1.6;
+      position: relative;
+      background: white;
     }
 
-    .left {
+    /* CENTER FOLD */
+    .page.left {
       border-right: 2px solid #ddd;
     }
 
-    /* CLICK ZONES */
-    .click-left, .click-right {
-      position: fixed;
-      top: 0;
-      width: 50%;
-      height: 100%;
-      cursor: pointer;
+    /* PAGE NUMBERS */
+    .page-number-left {
+      position: absolute;
+      bottom: 20px;
+      left: 30px;
+      font-size: 14px;
+      color: gray;
     }
 
-    .click-left { left: 0; }
-    .click-right { right: 0; }
-
-    /* PAGE NUMBERS */
-    .page-number {
-      position: fixed;
-      bottom: 15px;
-      width: 100%;
-      text-align: center;
+    .page-number-right {
+      position: absolute;
+      bottom: 20px;
+      right: 30px;
+      font-size: 14px;
       color: gray;
-      font-size: 16px;
+    }
+
+    h2 {
+      margin-top: 0;
     }
   </style>
 </head>
-<body>
 
+<body>
   <div class="book">
+
     <!-- PAGE 1 (LEFT) -->
     <div class="page left">
-      <h2>Page 1</h2>
+      <h2>Thanksgiving is coming up</h2>
       <p>
         Thanksgiving is coming up, but there is one problem:
         Max and his family don’t have a turkey.
       </p>
+      <div class="page-number-left">1</div>
     </div>
 
     <!-- PAGE 2 (RIGHT) -->
     <div class="page">
-      <h2>Page 2</h2>
+      <h2>That Night</h2>
       <p>
         That night, the turkey was scared.
         It was almost Thanksgiving.
       </p>
+      <div class="page-number-right">2</div>
     </div>
+
   </div>
-
-  <!-- NAVIGATION -->
-  <div class="click-left" onclick="location.href='turkey-cover.html'"></div>
-  <div class="click-right" onclick="location.href='spread-2.html'"></div>
-
-  <!-- PAGE NUMBERS -->
-  <div class="page-number">1 — 2</div>
-
 </body>
 </html>

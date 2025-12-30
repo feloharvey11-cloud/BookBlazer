@@ -1,146 +1,303 @@
+
 <!DOCTYPE html>
 <html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <title>My Books</title>
+<meta charset="UTF-8">
+<title>Turkey Capture</title>
+
+<style>
+body {
+  margin: 0;
+  background: #bfae9f;
+  font-family: Georgia, serif;
+}
+
+/* BOOK SPREAD */
+.spread {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+/* PAGES */
+.page {
+  width: 50%;
+  padding: 60px;
+  background: #fffdf8;
+  box-sizing: border-box;
+  position: relative;
+  line-height: 1.7;
+  font-size: 20px;
+}
+
+/* LEFT & RIGHT LOOK */
+.page.left {
+  border-right: 1px solid #ddd;
+}
+
+.page.right {
+  border-left: 1px solid #ddd;
+}
+
+/* HEADERS */
+.page-header {
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+/* PAGE NUMBERS */
+.page-number {
+  position: absolute;
+  bottom: 20px;
+  font-size: 14px;
+  color: #777;
+}
+
+.page-number.left {
+  left: 30px;
+}
+
+.page-number.right {
+  right: 30px;
+}
+
+/* SPINE SHADOW */
+.spine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 30px;
+  height: 100%;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.25),
+    rgba(0,0,0,0.05),
+    rgba(0,0,0,0.25)
+  );
+  pointer-events: none;
+}
+
+/* CLICK ZONES */
+.click-left,
+.click-right {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.click-left {
+  left: 0;
+}
+
+.click-right {
+  right: 0;
+}
+</style>
+  <title>Turkey Capture – Storybook</title>
 
   <style>
     body {
-      background: linear-gradient(90deg, green, blue, indigo);
-      background-size: 400% 400%;
-      animation: bg 10s ease infinite;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 40px;
-      color: white;
       margin: 0;
+      height: 100vh;
+      background: #cfcfcf;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Georgia", serif;
     }
 
-    @keyframes bg {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    /* TOOLBOX */
+    .toolbox {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      z-index: 1000;
+      font-size: 18px;
     }
 
-    h1 {
-      font-size: 48px;
-      margin-bottom: 20px;
-      text-shadow: 3px 3px 8px rgba(0,0,0,0.5);
-    }
-
-    #searchBox {
-      padding: 14px;
-      width: 65%;
-      font-size: 20px;
-      border-radius: 10px;
-      border: none;
-      outline: none;
-    }
-
-    #suggestion {
-      margin-top: 15px;
-      font-size: 20px;
-      color: yellow;
-    }
-
-    #suggestion a {
-      color: cyan;
-      font-weight: bold;
-    }
-
-    .big-button {
-      background: white;
-      color: black;
-      padding: 22px 45px;
-      margin: 25px;
-      font-size: 26px;
-      border-radius: 16px;
-      border: 3px solid #444;
+    .tool {
       cursor: pointer;
-      box-shadow: 0 8px 15px rgba(0,0,0,0.3);
-      transition: 0.25s;
+      user-select: none;
     }
 
-    .big-button:hover {
-      transform: scale(1.08);
+    .tool:hover {
+      transform: scale(1.15);
     }
 
-    hr {
-      margin: 50px 0;
-      border: none;
-      height: 2px;
-      background: rgba(255,255,255,0.4);
+    /* BOOK */
+    .book {
+      display: flex;
+      width: 900px;
+      height: 520px;
+      background: #eee;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+      position: relative;
     }
 
-    .favorites h2 {
-      font-size: 32px;
+    /* SPINE */
+    .spine {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 30px;
+      height: 100%;
+      transform: translateX(-50%);
+      background: radial-gradient(
+        ellipse at center,
+        rgba(0,0,0,0.35),
+        rgba(0,0,0,0) 70%
+      );
+      pointer-events: none;
     }
 
-    .favorite-item {
+    /* PAGES */
+    .page {
+      width: 50%;
+      padding: 40px;
+      box-sizing: border-box;
+      background: #fffaf0;
+      position: relative;
+    }
+
+    .header {
       font-size: 22px;
-      margin-top: 10px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 8px;
     }
+
+    .content {
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
+    .page-number-left {
+      position: absolute;
+      bottom: 15px;
+      left: 20px;
+      font-size: 16px;
+      color: gray;
+    }
+
+    .page-number-right {
+      position: absolute;
+      bottom: 15px;
+      right: 20px;
+      font-size: 16px;
+      color: gray;
+    }
+
+    /* CLICK ZONES */
+    .click-left, .click-right {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      cursor: pointer;
+    }
+
+    .click-left { left: 0; }
+    .click-right { right: 0; }
   </style>
-
-  <script>
-    const books = {
-      "holiday books": "holiday.html",
-      "turkey capture": "turkey-cover.html"
-    };
-
-    function normalize(text) {
-      return text.toLowerCase().trim();
-    }
-
-    function searchBook(event) {
-      if (event.key !== "Enter") return;
-
-      const input = normalize(document.getElementById("searchBox").value);
-      const suggestion = document.getElementById("suggestion");
-
-      for (let title in books) {
-        if (title.includes(input)) {
-          suggestion.innerHTML = `Did you mean <a href="${books[title]}">${title}</a>?`;
-          return;
-        }
-      }
-
-      suggestion.textContent = "No book found.";
-    }
-
-    window.onload = function () {
-      const fav = localStorage.getItem("favoriteBook");
-      if (fav) {
-        document.getElementById("favItem").innerHTML =
-          `❤️ <a href="turkey-cover.html" style="color:white;">${fav}</a>`;
-      }
-    };
-  </script>
 </head>
 
 <body>
 
-  <h1>📚 My Books</h1>
+<div class="spread">
 
-  <input
-    id="searchBox"
-    placeholder="Search for a book..."
-    onkeydown="searchBook(event)"
-  >
-  <div id="suggestion"></div>
-
-  <!-- ONLY HOLIDAY BOOKS -->
-  <button class="big-button" onclick="location.href='holiday.html'">
-    Holiday Books
-  </button>
-
-  <hr>
-
-  <!-- FAVORITES -->
-  <div class="favorites">
-    <h2>❤️ Favorites</h2>
-    <div id="favItem"></div>
+  <!-- LEFT PAGE -->
+  <div class="page left">
+    <h2 class="page-header">Max’s Family Perspective</h2>
+    <p>
+      Thanksgiving is coming up, but there is one problem: Max and his family
+      don’t have a turkey. They also don’t want to buy one.
+      For some reason, super random turkeys come out at night.
+    </p>
+    <div class="page-number left">1</div>
+  <!-- TOOLBOX -->
+  <div class="toolbox">
+    <div class="tool" onclick="toggleFavorite()">❤️</div>
+    <div class="tool">1 | 2</div>
+    <div class="tool" onclick="toggleFullscreen()">⛶</div>
   </div>
+
+  <!-- RIGHT PAGE -->
+  <div class="page right">
+    <h2 class="page-header">Turkey’s Perspective</h2>
+    <p>
+      That night, the turkey was nervous. It had heard stories about Thanksgiving
+      and knew something bad might happen.
+    </p>
+    <div class="page-number right">2</div>
+  </div>
+
+  <!-- SPINE -->
+  <div class="spine"></div>
+  <div class="book">
+
+    <!-- LEFT PAGE -->
+    <div class="page">
+      <div class="header">Max’s Family Perspective</div>
+      <div class="content">
+        Thanksgiving was coming fast, and Max’s family had a big problem.
+        They didn’t have a turkey, and they didn’t want to buy one.
+        Every night, strange sounds came from the woods behind their house…
+      </div>
+      <div class="page-number-left">1</div>
+    </div>
+
+    <!-- RIGHT PAGE -->
+    <div class="page">
+      <div class="header">Turkey’s Perspective</div>
+      <div class="content">
+        The turkeys knew humans were watching.
+        Every Thanksgiving, one of them disappeared.
+        This year, they planned to stay hidden—no matter what it took.
+      </div>
+      <div class="page-number-right">2</div>
+    </div>
+
+    <div class="spine"></div>
+
+    <!-- NAVIGATION -->
+    <div class="click-left" onclick="location.href='turkey-cover.html'"></div>
+    <div class="click-right" onclick="location.href='turkey-spread-2.html'"></div>
+
+  <!-- CLICK AREAS -->
+  <div class="click-left" onclick="location.href='turkey-cover.html'"></div>
+  <div class="click-right" onclick="location.href='turkey-spread-2.html'"></div>
+  </div>
+
+</div>
+  <script>
+    /* FAVORITE */
+    function toggleFavorite() {
+      localStorage.setItem("favoriteBook", "Turkey Capture");
+      alert("❤️ Added to Favorites!");
+    }
+
+    /* FULL SCREEN */
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    }
+  </script>
 
 </body>
 </html>

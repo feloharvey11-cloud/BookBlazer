@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Favorites</title>
+<style>
+body {
+  background: #222;
+  color: white;
+  font-family: Arial;
+  text-align: center;
+  padding: 40px;
+}
+a {
+  color: cyan;
+  font-size: 22px;
+}
+</style>
+</head>
+
+<body>
+<h1>❤️ Favorites</h1>
+<div id="fav"></div>
+
+<script>
+const fav = localStorage.getItem("favoriteBook");
+const box = document.getElementById("fav");
+
+if (fav) {
+  box.innerHTML = `📘 <a href="turkey-cover.html">${fav}</a>`;
+} else {
+  box.textContent = "No favorites yet ❤️";
+}
+</script>
+
+</body>
+</html>

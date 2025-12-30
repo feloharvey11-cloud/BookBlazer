@@ -8,6 +8,10 @@
 body {
   margin: 0;
   background: #bfae9f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   font-family: Georgia, serif;
 }
 
@@ -25,29 +29,55 @@ body {
   gap: 6px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
   z-index: 1000;
-  font-size: 20px;
 }
 
 .tool {
   cursor: pointer;
-  user-select: none;
+  font-size: 22px;
 }
 
-.status-text {
+.status {
   font-size: 14px;
-  color: #444;
+  color: #333;
 }
 
 /* BOOK */
 .book {
-  display: flex;
   width: 900px;
   height: 520px;
   background: #eee;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+  display: flex;
   position: relative;
-  margin: auto;
-  margin-top: 80px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+}
+
+.page {
+  width: 50%;
+  padding: 40px;
+  background: #fffaf0;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.header {
+  font-size: 22px;
+  font-weight: bold;
+  border-bottom: 2px solid #ddd;
+  margin-bottom: 15px;
+}
+
+.page-number-left {
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  color: gray;
+}
+
+.page-number-right {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  color: gray;
 }
 
 /* SPINE */
@@ -58,63 +88,14 @@ body {
   width: 30px;
   height: 100%;
   transform: translateX(-50%);
-  background: radial-gradient(
-    ellipse at center,
-    rgba(0,0,0,0.35),
-    rgba(0,0,0,0) 70%
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.25),
+    rgba(0,0,0,0.05),
+    rgba(0,0,0,0.25)
   );
   pointer-events: none;
 }
-
-/* PAGES */
-.page {
-  width: 50%;
-  padding: 40px;
-  box-sizing: border-box;
-  background: #fffaf0;
-  position: relative;
-}
-
-.header {
-  font-size: 22px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #ddd;
-  padding-bottom: 8px;
-}
-
-.content {
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-.page-number-left {
-  position: absolute;
-  bottom: 15px;
-  left: 20px;
-  font-size: 16px;
-  color: gray;
-}
-
-.page-number-right {
-  position: absolute;
-  bottom: 15px;
-  right: 20px;
-  font-size: 16px;
-  color: gray;
-}
-
-/* CLICK ZONES */
-.click-left, .click-right {
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  cursor: pointer;
-}
-
-.click-left { left: 0; }
-.click-right { right: 0; }
 </style>
 </head>
 
@@ -122,8 +103,8 @@ body {
 
 <!-- TOOLBOX -->
 <div class="toolbox">
-  <div class="tool" onclick="toggleFavorite()" id="heart">❤️</div>
-  <div class="status-text" id="status"></div>
+  <div id="heart" class="tool" onclick="toggleFavorite()">🤍</div>
+  <div id="status" class="status"></div>
   <div class="tool" onclick="location.href='index.html'">🏠</div>
 </div>
 
@@ -131,63 +112,53 @@ body {
 <div class="book">
   <div class="page">
     <div class="header">Max’s Family Perspective</div>
-    <div class="content">
-      Thanksgiving was coming fast, and Max’s family had a big problem.
-      They didn’t have a turkey, and they didn’t want to buy one.
-    </div>
+    Thanksgiving was coming fast, and Max’s family had a big problem.
+    They didn’t have a turkey, and strange sounds came from the woods…
     <div class="page-number-left">1</div>
   </div>
 
   <div class="page">
     <div class="header">Turkey’s Perspective</div>
-    <div class="content">
-      The turkeys knew humans were watching.
-      Every Thanksgiving, one of them disappeared.
-    </div>
+    The turkeys knew humans were watching.
+    Every Thanksgiving, one disappeared…
     <div class="page-number-right">2</div>
   </div>
 
   <div class="spine"></div>
-
-  <div class="click-left" onclick="location.href='turkey-cover.html'"></div>
-  <div class="click-right" onclick="location.href='turkey-spread-2.html'"></div>
 </div>
 
 <script>
-let timer;
+const heart = document.getElementById("heart");
+const status = document.getElementById("status");
+
+function updateHeart() {
+  const fav = localStorage.getItem("favoriteBook");
+  if (fav === "Turkey Capture") {
+    heart.textContent = "❤️";
+  } else {
+    heart.textContent = "🤍";
+  }
+}
 
 function showStatus(text) {
-  const status = document.getElementById("status");
   status.textContent = text;
-  clearTimeout(timer);
-  timer = setTimeout(() => {
-    status.textContent = "";
-  }, 20000);
+  setTimeout(() => status.textContent = "", 20000);
 }
 
 function toggleFavorite() {
-  const heart = document.getElementById("heart");
-  const saved = localStorage.getItem("favoriteBook");
-
-  if (saved === "Turkey Capture") {
+  const fav = localStorage.getItem("favoriteBook");
+  if (fav === "Turkey Capture") {
     localStorage.removeItem("favoriteBook");
-    heart.textContent = "🤍";
+    updateHeart();
     showStatus("Unfavorited");
   } else {
     localStorage.setItem("favoriteBook", "Turkey Capture");
-    heart.textContent = "❤️";
+    updateHeart();
     showStatus("Favorited");
   }
 }
 
-/* LOAD STATE */
-window.onload = () => {
-  if (localStorage.getItem("favoriteBook") === "Turkey Capture") {
-    document.getElementById("heart").textContent = "❤️";
-  } else {
-    document.getElementById("heart").textContent = "🤍";
-  }
-};
+updateHeart();
 </script>
 
 </body>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Turkey Capture – Spread 1</title>
+<title>Turkey Capture – Story</title>
 
 <style>
 body {
@@ -20,57 +20,35 @@ body {
   border-radius: 12px;
   padding: 10px 14px;
   display: flex;
-  gap: 15px;
+  flex-direction: column;
   align-items: center;
+  gap: 6px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
   z-index: 1000;
   font-size: 20px;
 }
+
 .tool {
   cursor: pointer;
   user-select: none;
 }
-.tool:hover {
-  transform: scale(1.15);
-}
 
-/* BOOK SPREAD */
-.spread {
-  display: flex;
-  width: 100%;
-  height: 100vh;
-  position: relative;
-}
-
-/* PAGES */
-.page {
-  width: 50%;
-  padding: 60px;
-  background: #fffdf8;
-  box-sizing: border-box;
-  position: relative;
-  line-height: 1.7;
-  font-size: 20px;
-}
-
-.page.left { border-right: 1px solid #ddd; }
-.page.right { border-left: 1px solid #ddd; }
-
-/* HEADERS */
-.page-header {
-  font-size: 26px;
-  margin-bottom: 20px;
-}
-
-/* PAGE NUMBERS */
-.page-number {
-  position: absolute;
-  bottom: 20px;
+.status-text {
   font-size: 14px;
-  color: #777;
+  color: #444;
 }
-.page-number.left { left: 30px; }
-.page-number.right { right: 30px; }
+
+/* BOOK */
+.book {
+  display: flex;
+  width: 900px;
+  height: 520px;
+  background: #eee;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+  position: relative;
+  margin: auto;
+  margin-top: 80px;
+}
 
 /* SPINE */
 .spine {
@@ -80,13 +58,50 @@ body {
   width: 30px;
   height: 100%;
   transform: translateX(-50%);
-  background: linear-gradient(
-    to right,
-    rgba(0,0,0,0.25),
-    rgba(0,0,0,0.05),
-    rgba(0,0,0,0.25)
+  background: radial-gradient(
+    ellipse at center,
+    rgba(0,0,0,0.35),
+    rgba(0,0,0,0) 70%
   );
   pointer-events: none;
+}
+
+/* PAGES */
+.page {
+  width: 50%;
+  padding: 40px;
+  box-sizing: border-box;
+  background: #fffaf0;
+  position: relative;
+}
+
+.header {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 8px;
+}
+
+.content {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.page-number-left {
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  font-size: 16px;
+  color: gray;
+}
+
+.page-number-right {
+  position: absolute;
+  bottom: 15px;
+  right: 20px;
+  font-size: 16px;
+  color: gray;
 }
 
 /* CLICK ZONES */
@@ -97,6 +112,7 @@ body {
   height: 100%;
   cursor: pointer;
 }
+
 .click-left { left: 0; }
 .click-right { right: 0; }
 </style>
@@ -106,61 +122,70 @@ body {
 
 <!-- TOOLBOX -->
 <div class="toolbox">
-  <div class="tool" id="heartBtn" onclick="toggleFavorite()">🤍</div>
+  <div class="tool" onclick="toggleFavorite()" id="heart">❤️</div>
+  <div class="status-text" id="status"></div>
   <div class="tool" onclick="location.href='index.html'">🏠</div>
 </div>
 
-<div class="spread">
-
-  <!-- LEFT PAGE -->
-  <div class="page left">
-    <div class="page-header">Max’s Family Perspective</div>
-    <p>
-      Thanksgiving is coming up, but there is one problem:
-      Max and his family don’t have a turkey.
-      They also don’t want to buy one.
-      For some reason, turkeys come out at night.
-    </p>
-    <div class="page-number left">1</div>
+<!-- BOOK -->
+<div class="book">
+  <div class="page">
+    <div class="header">Max’s Family Perspective</div>
+    <div class="content">
+      Thanksgiving was coming fast, and Max’s family had a big problem.
+      They didn’t have a turkey, and they didn’t want to buy one.
+    </div>
+    <div class="page-number-left">1</div>
   </div>
 
-  <!-- RIGHT PAGE -->
-  <div class="page right">
-    <div class="page-header">Turkey’s Perspective</div>
-    <p>
-      That night, the turkey was nervous.
-      It had heard stories about Thanksgiving
-      and knew something bad might happen.
-    </p>
-    <div class="page-number right">2</div>
+  <div class="page">
+    <div class="header">Turkey’s Perspective</div>
+    <div class="content">
+      The turkeys knew humans were watching.
+      Every Thanksgiving, one of them disappeared.
+    </div>
+    <div class="page-number-right">2</div>
   </div>
 
-  <!-- SPINE -->
   <div class="spine"></div>
 
-  <!-- NAVIGATION -->
   <div class="click-left" onclick="location.href='turkey-cover.html'"></div>
   <div class="click-right" onclick="location.href='turkey-spread-2.html'"></div>
-
 </div>
 
 <script>
-const BOOK_KEY = "favorite_TurkeyCapture";
+let timer;
+
+function showStatus(text) {
+  const status = document.getElementById("status");
+  status.textContent = text;
+  clearTimeout(timer);
+  timer = setTimeout(() => {
+    status.textContent = "";
+  }, 20000);
+}
 
 function toggleFavorite() {
-  const heart = document.getElementById("heartBtn");
-  if (localStorage.getItem(BOOK_KEY)) {
-    localStorage.removeItem(BOOK_KEY);
+  const heart = document.getElementById("heart");
+  const saved = localStorage.getItem("favoriteBook");
+
+  if (saved === "Turkey Capture") {
+    localStorage.removeItem("favoriteBook");
     heart.textContent = "🤍";
+    showStatus("Unfavorited");
   } else {
-    localStorage.setItem(BOOK_KEY, "Turkey Capture");
+    localStorage.setItem("favoriteBook", "Turkey Capture");
     heart.textContent = "❤️";
+    showStatus("Favorited");
   }
 }
 
+/* LOAD STATE */
 window.onload = () => {
-  if (localStorage.getItem(BOOK_KEY)) {
-    document.getElementById("heartBtn").textContent = "❤️";
+  if (localStorage.getItem("favoriteBook") === "Turkey Capture") {
+    document.getElementById("heart").textContent = "❤️";
+  } else {
+    document.getElementById("heart").textContent = "🤍";
   }
 };
 </script>

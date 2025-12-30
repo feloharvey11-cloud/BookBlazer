@@ -24,10 +24,11 @@ body {
   align-items: center;
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
   z-index: 1000;
-  font-size: 18px;
+  font-size: 20px;
 }
 .tool {
   cursor: pointer;
+  user-select: none;
 }
 .tool:hover {
   transform: scale(1.15);
@@ -52,12 +53,8 @@ body {
   font-size: 20px;
 }
 
-.page.left {
-  border-right: 1px solid #ddd;
-}
-.page.right {
-  border-left: 1px solid #ddd;
-}
+.page.left { border-right: 1px solid #ddd; }
+.page.right { border-left: 1px solid #ddd; }
 
 /* HEADERS */
 .page-header {
@@ -72,14 +69,10 @@ body {
   font-size: 14px;
   color: #777;
 }
-.page-number.left {
-  left: 30px;
-}
-.page-number.right {
-  right: 30px;
-}
+.page-number.left { left: 30px; }
+.page-number.right { right: 30px; }
 
-/* SPINE SHADOW */
+/* SPINE */
 .spine {
   position: absolute;
   left: 50%;
@@ -97,8 +90,7 @@ body {
 }
 
 /* CLICK ZONES */
-.click-left,
-.click-right {
+.click-left, .click-right {
   position: absolute;
   top: 0;
   width: 50%;
@@ -114,9 +106,8 @@ body {
 
 <!-- TOOLBOX -->
 <div class="toolbox">
-  <div class="tool" onclick="toggleFavorite()">❤️</div>
-  <div class="tool">1</div>
-  <div class="tool" onclick="toggleFullscreen()">⛶</div>
+  <div class="tool" id="heartBtn" onclick="toggleFavorite()">🤍</div>
+  <div class="tool" onclick="location.href='index.html'">🏠</div>
 </div>
 
 <div class="spread">
@@ -128,7 +119,7 @@ body {
       Thanksgiving is coming up, but there is one problem:
       Max and his family don’t have a turkey.
       They also don’t want to buy one.
-      For some reason, super random turkeys come out at night.
+      For some reason, turkeys come out at night.
     </p>
     <div class="page-number left">1</div>
   </div>
@@ -154,18 +145,24 @@ body {
 </div>
 
 <script>
-function toggleFavorite() {
-  localStorage.setItem("favoriteBook", "Turkey Capture");
-  alert("❤️ Added to Favorites!");
-}
+const BOOK_KEY = "favorite_TurkeyCapture";
 
-function toggleFullscreen() {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen();
+function toggleFavorite() {
+  const heart = document.getElementById("heartBtn");
+  if (localStorage.getItem(BOOK_KEY)) {
+    localStorage.removeItem(BOOK_KEY);
+    heart.textContent = "🤍";
   } else {
-    document.exitFullscreen();
+    localStorage.setItem(BOOK_KEY, "Turkey Capture");
+    heart.textContent = "❤️";
   }
 }
+
+window.onload = () => {
+  if (localStorage.getItem(BOOK_KEY)) {
+    document.getElementById("heartBtn").textContent = "❤️";
+  }
+};
 </script>
 
 </body>

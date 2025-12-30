@@ -3,10 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>My Books</title>
-
   <style>
     body {
-      background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+      background: linear-gradient(
+        90deg,
+        red, orange, yellow, green, blue, indigo, violet
+      );
       background-size: 400% 400%;
       animation: rainbow 12s ease infinite;
       font-family: Arial, sans-serif;
@@ -123,19 +125,30 @@
       suggestionBox.textContent = "No similar book found.";
     }
 
-    window.onload = function () {
+    function loadFavorites() {
       const favorite = localStorage.getItem("favoriteBook");
+      const section = document.getElementById("favoritesSection");
+      const list = document.getElementById("favoritesList");
+
       if (favorite) {
-        document.getElementById("favoritesSection").classList.remove("hidden");
-        document.getElementById("favoritesList").innerHTML =
-          `<div class="favorite-item">❤️ <a href="turkey-cover.html" style="color:white;">${favorite}</a></div>`;
+        section.classList.remove("hidden");
+        list.innerHTML =
+          `<div class="favorite-item">
+            ❤️ <a href="turkey-cover.html" style="color:white;">
+              ${favorite}
+            </a>
+          </div>`;
+      } else {
+        section.classList.add("hidden");
+        list.innerHTML = "";
       }
-    };
+    }
+
+    window.onload = loadFavorites;
   </script>
 </head>
 
 <body>
-
   <h1>📚 My Books</h1>
 
   <!-- SEARCH -->
@@ -147,7 +160,7 @@
   >
   <div id="suggestion"></div>
 
-  <!-- MAIN BUTTONS -->
+  <!-- MAIN BUTTONS (Turkey button REMOVED) -->
   <div>
     <button class="big-button" onclick="location.href='holiday.html'">
       Holiday Books
@@ -156,10 +169,6 @@
     <button class="big-button" onclick="location.href='battlecats.html'">
       Battle Cats
     </button>
-
-    <button class="big-button" onclick="location.href='turkey-cover.html'">
-      🦃 Turkey Capture
-    </button>
   </div>
 
   <!-- FAVORITES -->
@@ -167,6 +176,5 @@
     <h2>❤️ Favorites</h2>
     <div id="favoritesList"></div>
   </div>
-
 </body>
 </html>

@@ -1,136 +1,179 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<title>Turkey Capture</title>
+  <title>Turkey Capture – Storybook</title>
 
-<style>
-body {
-  margin: 0;
-  background: #bfae9f;
-  font-family: Georgia, serif;
-}
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #cfcfcf;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: "Georgia", serif;
+    }
 
-/* BOOK SPREAD */
-.spread {
-  display: flex;
-  width: 100%;
-  height: 100vh;
-  position: relative;
-}
+    /* TOOLBOX */
+    .toolbox {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      background: rgba(255,255,255,0.95);
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      z-index: 1000;
+      font-size: 18px;
+    }
 
-/* PAGES */
-.page {
-  width: 50%;
-  padding: 60px;
-  background: #fffdf8;
-  box-sizing: border-box;
-  position: relative;
-  line-height: 1.7;
-  font-size: 20px;
-}
+    .tool {
+      cursor: pointer;
+      user-select: none;
+    }
 
-/* LEFT & RIGHT LOOK */
-.page.left {
-  border-right: 1px solid #ddd;
-}
+    .tool:hover {
+      transform: scale(1.15);
+    }
 
-.page.right {
-  border-left: 1px solid #ddd;
-}
+    /* BOOK */
+    .book {
+      display: flex;
+      width: 900px;
+      height: 520px;
+      background: #eee;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+      position: relative;
+    }
 
-/* HEADERS */
-.page-header {
-  font-size: 26px;
-  margin-bottom: 20px;
-}
+    /* SPINE */
+    .spine {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 30px;
+      height: 100%;
+      transform: translateX(-50%);
+      background: radial-gradient(
+        ellipse at center,
+        rgba(0,0,0,0.35),
+        rgba(0,0,0,0) 70%
+      );
+      pointer-events: none;
+    }
 
-/* PAGE NUMBERS */
-.page-number {
-  position: absolute;
-  bottom: 20px;
-  font-size: 14px;
-  color: #777;
-}
+    /* PAGES */
+    .page {
+      width: 50%;
+      padding: 40px;
+      box-sizing: border-box;
+      background: #fffaf0;
+      position: relative;
+    }
 
-.page-number.left {
-  left: 30px;
-}
+    .header {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 8px;
+    }
 
-.page-number.right {
-  right: 30px;
-}
+    .content {
+      font-size: 18px;
+      line-height: 1.6;
+    }
 
-/* SPINE SHADOW */
-.spine {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 30px;
-  height: 100%;
-  transform: translateX(-50%);
-  background: linear-gradient(
-    to right,
-    rgba(0,0,0,0.25),
-    rgba(0,0,0,0.05),
-    rgba(0,0,0,0.25)
-  );
-  pointer-events: none;
-}
+    .page-number-left {
+      position: absolute;
+      bottom: 15px;
+      left: 20px;
+      font-size: 16px;
+      color: gray;
+    }
 
-/* CLICK ZONES */
-.click-left,
-.click-right {
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  cursor: pointer;
-}
+    .page-number-right {
+      position: absolute;
+      bottom: 15px;
+      right: 20px;
+      font-size: 16px;
+      color: gray;
+    }
 
-.click-left {
-  left: 0;
-}
+    /* CLICK ZONES */
+    .click-left, .click-right {
+      position: absolute;
+      top: 0;
+      width: 50%;
+      height: 100%;
+      cursor: pointer;
+    }
 
-.click-right {
-  right: 0;
-}
-</style>
+    .click-left { left: 0; }
+    .click-right { right: 0; }
+  </style>
 </head>
 
 <body>
 
-<div class="spread">
-
-  <!-- LEFT PAGE -->
-  <div class="page left">
-    <h2 class="page-header">Max’s Family Perspective</h2>
-    <p>
-      Thanksgiving is coming up, but there is one problem: Max and his family
-      don’t have a turkey. They also don’t want to buy one.
-      For some reason, super random turkeys come out at night.
-    </p>
-    <div class="page-number left">1</div>
+  <!-- TOOLBOX -->
+  <div class="toolbox">
+    <div class="tool" onclick="toggleFavorite()">❤️</div>
+    <div class="tool">1 | 2</div>
+    <div class="tool" onclick="toggleFullscreen()">⛶</div>
   </div>
 
-  <!-- RIGHT PAGE -->
-  <div class="page right">
-    <h2 class="page-header">Turkey’s Perspective</h2>
-    <p>
-      That night, the turkey was nervous. It had heard stories about Thanksgiving
-      and knew something bad might happen.
-    </p>
-    <div class="page-number right">2</div>
+  <div class="book">
+
+    <!-- LEFT PAGE -->
+    <div class="page">
+      <div class="header">Max’s Family Perspective</div>
+      <div class="content">
+        Thanksgiving was coming fast, and Max’s family had a big problem.
+        They didn’t have a turkey, and they didn’t want to buy one.
+        Every night, strange sounds came from the woods behind their house…
+      </div>
+      <div class="page-number-left">1</div>
+    </div>
+
+    <!-- RIGHT PAGE -->
+    <div class="page">
+      <div class="header">Turkey’s Perspective</div>
+      <div class="content">
+        The turkeys knew humans were watching.
+        Every Thanksgiving, one of them disappeared.
+        This year, they planned to stay hidden—no matter what it took.
+      </div>
+      <div class="page-number-right">2</div>
+    </div>
+
+    <div class="spine"></div>
+
+    <!-- NAVIGATION -->
+    <div class="click-left" onclick="location.href='turkey-cover.html'"></div>
+    <div class="click-right" onclick="location.href='turkey-spread-2.html'"></div>
+
   </div>
 
-  <!-- SPINE -->
-  <div class="spine"></div>
+  <script>
+    /* FAVORITE */
+    function toggleFavorite() {
+      localStorage.setItem("favoriteBook", "Turkey Capture");
+      alert("❤️ Added to Favorites!");
+    }
 
-  <!-- CLICK AREAS -->
-  <div class="click-left" onclick="location.href='turkey-cover.html'"></div>
-  <div class="click-right" onclick="location.href='turkey-spread-2.html'"></div>
-
-</div>
+    /* FULL SCREEN */
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen();
+      } else {
+        document.exitFullscreen();
+      }
+    }
+  </script>
 
 </body>
 </html>

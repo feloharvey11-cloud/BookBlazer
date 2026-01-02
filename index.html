@@ -3,12 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>My Books</title>
+
   <style>
     body {
-      background: linear-gradient(
-        90deg,
-        red, orange, yellow, green, blue, indigo, violet
-      );
+      background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
       background-size: 400% 400%;
       animation: rainbow 12s ease infinite;
       font-family: Arial, sans-serif;
@@ -70,15 +68,25 @@
       transform: scale(1.08);
     }
 
-    /* FAVORITES */
+    /* FAVORITES BUTTON (TOP RIGHT) */
+    .fav-button {
+      position: fixed;
+      top: 20px;
+      right: 25px;
+      font-size: 30px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    /* FAVORITES SECTION */
     .favorites {
-      margin-top: 60px;
-      padding-top: 25px;
+      margin-top: 70px;
+      padding-top: 30px;
       border-top: 3px solid rgba(255,255,255,0.4);
     }
 
     .favorites h2 {
-      font-size: 32px;
+      font-size: 34px;
       margin-bottom: 15px;
     }
 
@@ -87,16 +95,18 @@
       margin-top: 10px;
     }
 
-    .hidden {
-      display: none;
+    .empty {
+      font-size: 22px;
+      opacity: 0.8;
     }
   </style>
 
   <script>
+    /* SEARCH */
     const books = {
-      "turkey capture": "turkey-cover.html",
-      "battle cats rise": "battle-cats-rise.html",
-      "battle cats invade": "battle-cats-invade.html"
+      "holiday books": "holiday.html",
+      "battle cats": "battlecats.html",
+      "turkey capture": "turkey-cover.html"
     };
 
     function normalize(text) {
@@ -105,14 +115,8 @@
 
     function searchBook(event) {
       if (event.key !== "Enter") return;
-
       const input = normalize(document.getElementById("searchBox").value);
       const suggestionBox = document.getElementById("suggestion");
-
-      if (input === "") {
-        suggestionBox.textContent = "Type a book name and press Enter.";
-        return;
-      }
 
       for (let title in books) {
         if (title.includes(input)) {
@@ -121,34 +125,32 @@
           return;
         }
       }
-
-      suggestionBox.textContent = "No similar book found.";
+      suggestionBox.textContent = "No book found.";
     }
 
-    function loadFavorites() {
-      const favorite = localStorage.getItem("favoriteBook");
-      const section = document.getElementById("favoritesSection");
+    /* FAVORITES LOAD */
+    window.onload = function () {
+      const fav = localStorage.getItem("favoriteBook");
       const list = document.getElementById("favoritesList");
 
-      if (favorite) {
-        section.classList.remove("hidden");
-        list.innerHTML =
-          `<div class="favorite-item">
-            ❤️ <a href="turkey-cover.html" style="color:white;">
-              ${favorite}
-            </a>
-          </div>`;
+      if (fav) {
+        list.innerHTML = `
+          <div class="favorite-item">
+            ❤️ <a href="turkey-cover.html" style="color:white;">${fav}</a>
+          </div>
+        `;
       } else {
-        section.classList.add("hidden");
-        list.innerHTML = "";
+        list.innerHTML = `<div class="empty">Nothing here yet 💭</div>`;
       }
-    }
-
-    window.onload = loadFavorites;
+    };
   </script>
 </head>
 
 <body>
+
+  <!-- FAVORITES PAGE BUTTON -->
+  <div class="fav-button" onclick="location.href='favorites.html'">❤️</div>
+
   <h1>📚 My Books</h1>
 
   <!-- SEARCH -->
@@ -160,7 +162,7 @@
   >
   <div id="suggestion"></div>
 
-  <!-- MAIN BUTTONS (Turkey button REMOVED) -->
+  <!-- MAIN BUTTONS -->
   <div>
     <button class="big-button" onclick="location.href='holiday.html'">
       Holiday Books
@@ -171,10 +173,11 @@
     </button>
   </div>
 
-  <!-- FAVORITES -->
-  <div id="favoritesSection" class="favorites hidden">
+  <!-- FAVORITES SECTION -->
+  <div class="favorites">
     <h2>❤️ Favorites</h2>
     <div id="favoritesList"></div>
   </div>
+
 </body>
 </html>

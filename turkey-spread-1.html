@@ -21,69 +21,71 @@ body {
   top: 15px;
   right: 20px;
   background: rgba(255,255,255,0.95);
-  border-radius: 12px;
-  padding: 10px 14px;
+  border-radius: 14px;
+  padding: 12px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
   z-index: 1000;
 }
 
 .tool {
   cursor: pointer;
-  font-size: 22px;
+  font-size: 24px;
 }
 
 .status {
   font-size: 14px;
   color: #333;
-  min-height: 16px;
+  height: 18px;
 }
 
-/* BOOK */
+/* BOOK (BIGGER) */
 .book {
-  width: 900px;
-  height: 520px;
+  width: min(1200px, 95vw);
+  height: min(650px, 90vh);
   background: #eee;
   display: flex;
   position: relative;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.35);
 }
 
 /* PAGES */
 .page {
   width: 50%;
-  padding: 40px;
+  padding: 60px;
   background: #fffaf0;
   box-sizing: border-box;
   position: relative;
-  line-height: 1.6;
-  font-size: 18px;
+  font-size: 20px;
+  line-height: 1.75;
 }
 
 .header {
-  font-size: 22px;
+  font-size: 26px;
   font-weight: bold;
   border-bottom: 2px solid #ddd;
-  margin-bottom: 15px;
-  padding-bottom: 6px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 /* PAGE NUMBERS */
 .page-number-left {
   position: absolute;
-  bottom: 15px;
-  left: 20px;
+  bottom: 20px;
+  left: 30px;
   color: gray;
+  font-size: 16px;
 }
 
 .page-number-right {
   position: absolute;
-  bottom: 15px;
-  right: 20px;
+  bottom: 20px;
+  right: 30px;
   color: gray;
+  font-size: 16px;
 }
 
 /* SPINE */
@@ -91,7 +93,7 @@ body {
   position: absolute;
   left: 50%;
   top: 0;
-  width: 30px;
+  width: 36px;
   height: 100%;
   transform: translateX(-50%);
   background: linear-gradient(
@@ -116,8 +118,6 @@ body {
 
 <!-- BOOK -->
 <div class="book">
-
-  <!-- LEFT PAGE -->
   <div class="page">
     <div class="header">Max’s Family Perspective</div>
 
@@ -134,13 +134,15 @@ body {
     <div class="page-number-left">1</div>
   </div>
 
-  <!-- RIGHT PAGE -->
   <div class="page">
     <div class="header">Turkey’s Perspective</div>
 
     <p>
       That night, a turkey was scared. It was almost Thanksgiving, and you know
       what that means for the turkey. Suddenly, the turkey saw something shiny.
+    </p>
+
+    <p>
       As he approached, he noticed something—it was food! So he ran as fast as
       he could, like a cheetah.
     </p>
@@ -154,7 +156,6 @@ body {
     <div class="page-number-right">2</div>
   </div>
 
-  <!-- SPINE -->
   <div class="spine"></div>
 </div>
 
@@ -169,9 +170,7 @@ function updateHeart() {
 
 function showStatus(text) {
   status.textContent = text;
-  setTimeout(() => {
-    status.textContent = "";
-  }, 20000);
+  setTimeout(() => status.textContent = "", 20000);
 }
 
 function toggleFavorite() {

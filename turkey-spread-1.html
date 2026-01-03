@@ -39,6 +39,7 @@ body {
 .status {
   font-size: 14px;
   color: #333;
+  min-height: 16px;
 }
 
 /* BOOK */
@@ -51,12 +52,15 @@ body {
   box-shadow: 0 20px 40px rgba(0,0,0,0.35);
 }
 
+/* PAGES */
 .page {
   width: 50%;
   padding: 40px;
   background: #fffaf0;
   box-sizing: border-box;
   position: relative;
+  line-height: 1.6;
+  font-size: 18px;
 }
 
 .header {
@@ -64,8 +68,10 @@ body {
   font-weight: bold;
   border-bottom: 2px solid #ddd;
   margin-bottom: 15px;
+  padding-bottom: 6px;
 }
 
+/* PAGE NUMBERS */
 .page-number-left {
   position: absolute;
   bottom: 15px;
@@ -110,20 +116,45 @@ body {
 
 <!-- BOOK -->
 <div class="book">
+
+  <!-- LEFT PAGE -->
   <div class="page">
     <div class="header">Max’s Family Perspective</div>
-    Thanksgiving was coming fast, and Max’s family had a big problem.
-    They didn’t have a turkey, and strange sounds came from the woods…
+
+    <p>
+      Hi, my name is Max. Thanksgiving is coming up, but there is one problem:
+      Max and his family don’t have a turkey. They also don’t want to buy one.
+    </p>
+
+    <p>
+      Super randomly, turkeys come out at night for a reason. So Max’s family
+      made a trap and waited for a turkey.
+    </p>
+
     <div class="page-number-left">1</div>
   </div>
 
+  <!-- RIGHT PAGE -->
   <div class="page">
     <div class="header">Turkey’s Perspective</div>
-    The turkeys knew humans were watching.
-    Every Thanksgiving, one disappeared…
+
+    <p>
+      That night, a turkey was scared. It was almost Thanksgiving, and you know
+      what that means for the turkey. Suddenly, the turkey saw something shiny.
+      As he approached, he noticed something—it was food! So he ran as fast as
+      he could, like a cheetah.
+    </p>
+
+    <p>
+      The food was inside a box. The only thing blocking him from the food was
+      a stick. It was heavy, but he pushed with all his might and was able to
+      knock the stick away.
+    </p>
+
     <div class="page-number-right">2</div>
   </div>
 
+  <!-- SPINE -->
   <div class="spine"></div>
 </div>
 
@@ -133,16 +164,14 @@ const status = document.getElementById("status");
 
 function updateHeart() {
   const fav = localStorage.getItem("favoriteBook");
-  if (fav === "Turkey Capture") {
-    heart.textContent = "❤️";
-  } else {
-    heart.textContent = "🤍";
-  }
+  heart.textContent = fav === "Turkey Capture" ? "❤️" : "🤍";
 }
 
 function showStatus(text) {
   status.textContent = text;
-  setTimeout(() => status.textContent = "", 20000);
+  setTimeout(() => {
+    status.textContent = "";
+  }, 20000);
 }
 
 function toggleFavorite() {

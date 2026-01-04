@@ -3,11 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <title>Turkey Capture – Story</title>
-
 <style>
 body {
   margin: 0;
-  background: #bfae9f;
+  background: #c8b8a8;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,11 +17,11 @@ body {
 /* TOOLBOX */
 .toolbox {
   position: fixed;
-  top: 15px;
-  right: 20px;
+  top: 20px;
+  right: 25px;
   background: rgba(255,255,255,0.95);
   border-radius: 14px;
-  padding: 12px 16px;
+  padding: 12px 14px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -30,62 +29,58 @@ body {
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
   z-index: 1000;
 }
-
 .tool {
   cursor: pointer;
-  font-size: 24px;
+  font-size: 26px;
 }
-
 .status {
   font-size: 14px;
   color: #333;
-  height: 18px;
 }
 
-/* BOOK (BIGGER) */
+/* BOOK */
+.book-wrapper {
+  transform: scale(1.25); /* 🔥 MAKE BOOK BIGGER */
+}
+
 .book {
-  width: min(1200px, 95vw);
-  height: min(650px, 90vh);
+  width: 1100px;   /* bigger width */
+  height: 620px;   /* bigger height */
   background: #eee;
   display: flex;
   position: relative;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
 }
 
-/* PAGES */
 .page {
   width: 50%;
-  padding: 60px;
+  padding: 55px;
   background: #fffaf0;
   box-sizing: border-box;
   position: relative;
   font-size: 20px;
-  line-height: 1.75;
+  line-height: 1.7;
 }
 
 .header {
   font-size: 26px;
   font-weight: bold;
   border-bottom: 2px solid #ddd;
-  padding-bottom: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
+  padding-bottom: 8px;
 }
 
-/* PAGE NUMBERS */
 .page-number-left {
   position: absolute;
   bottom: 20px;
-  left: 30px;
+  left: 25px;
   color: gray;
-  font-size: 16px;
 }
-
 .page-number-right {
   position: absolute;
   bottom: 20px;
-  right: 30px;
+  right: 25px;
   color: gray;
-  font-size: 16px;
 }
 
 /* SPINE */
@@ -93,20 +88,19 @@ body {
   position: absolute;
   left: 50%;
   top: 0;
-  width: 36px;
+  width: 34px;
   height: 100%;
   transform: translateX(-50%);
   background: linear-gradient(
     to right,
-    rgba(0,0,0,0.25),
-    rgba(0,0,0,0.05),
-    rgba(0,0,0,0.25)
+    rgba(0,0,0,0.28),
+    rgba(0,0,0,0.06),
+    rgba(0,0,0,0.28)
   );
   pointer-events: none;
 }
 </style>
 </head>
-
 <body>
 
 <!-- TOOLBOX -->
@@ -117,46 +111,41 @@ body {
 </div>
 
 <!-- BOOK -->
-<div class="book">
-  <div class="page">
-    <div class="header">Max’s Family Perspective</div>
+<div class="book-wrapper">
+  <div class="book">
+    <div class="page">
+      <div class="header">Max’s Family Perspective</div>
+      <p>
+        Hi, my name is Max. Thanksgiving is coming up, but there is one problem:
+        Max and his family don’t have a turkey. They also don’t want to buy one.
+      </p>
+      <p>
+        Super randomly, turkeys come out at night for a reason. So Max’s family
+        made a trap and waited for a turkey.
+      </p>
+      <div class="page-number-left">1</div>
+    </div>
 
-    <p>
-      Hi, my name is Max. Thanksgiving is coming up, but there is one problem:
-      Max and his family don’t have a turkey. They also don’t want to buy one.
-    </p>
+    <div class="page">
+      <div class="header">Turkey’s Perspective</div>
+      <p>
+        That night, a turkey was scared. It was almost Thanksgiving, and you know
+        what that means for the turkey. Suddenly, the turkey saw something shiny.
+      </p>
+      <p>
+        As he approached, he noticed something—it was food! So he ran as fast as
+        he could, like a cheetah.
+      </p>
+      <p>
+        The food was inside a box. The only thing blocking him from the food was
+        a stick. It was heavy, but he pushed with all his might and was able to
+        knock the stick away.
+      </p>
+      <div class="page-number-right">2</div>
+    </div>
 
-    <p>
-      Super randomly, turkeys come out at night for a reason. So Max’s family
-      made a trap and waited for a turkey.
-    </p>
-
-    <div class="page-number-left">1</div>
+    <div class="spine"></div>
   </div>
-
-  <div class="page">
-    <div class="header">Turkey’s Perspective</div>
-
-    <p>
-      That night, a turkey was scared. It was almost Thanksgiving, and you know
-      what that means for the turkey. Suddenly, the turkey saw something shiny.
-    </p>
-
-    <p>
-      As he approached, he noticed something—it was food! So he ran as fast as
-      he could, like a cheetah.
-    </p>
-
-    <p>
-      The food was inside a box. The only thing blocking him from the food was
-      a stick. It was heavy, but he pushed with all his might and was able to
-      knock the stick away.
-    </p>
-
-    <div class="page-number-right">2</div>
-  </div>
-
-  <div class="spine"></div>
 </div>
 
 <script>
@@ -177,13 +166,12 @@ function toggleFavorite() {
   const fav = localStorage.getItem("favoriteBook");
   if (fav === "Turkey Capture") {
     localStorage.removeItem("favoriteBook");
-    updateHeart();
     showStatus("Unfavorited");
   } else {
     localStorage.setItem("favoriteBook", "Turkey Capture");
-    updateHeart();
     showStatus("Favorited");
   }
+  updateHeart();
 }
 
 updateHeart();

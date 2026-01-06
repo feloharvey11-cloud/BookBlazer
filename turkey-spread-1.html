@@ -2,47 +2,44 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Turkey Capture – Story</title>
+<title>Turkey Capture – Page 1</title>
 
 <style>
 body {
   margin: 0;
+  height: 100vh;
   background: #bfae9f;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   font-family: Georgia, serif;
+  user-select: none;
 }
 
 /* TOOLBOX */
 .toolbox {
   position: fixed;
-  top: 15px;
-  right: 20px;
+  top: 18px;
+  right: 22px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 6px;
+  gap: 12px;
   z-index: 1000;
 }
 
 .tool {
-  cursor: pointer;
   font-size: 26px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.95);
+  padding: 10px 12px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
 }
 
-.status {
-  font-size: 15px;
-  color: #222;
-}
-
-/* BOOK (BIGGER) */
+/* BOOK (BIGGER SIZE) */
 .book {
-  width: 92vw;          /* BIG */
-  max-width: 1400px;   /* BIG */
-  height: 78vh;        /* BIG */
-  max-height: 750px;
+  width: 1200px;
+  height: 680px;
   background: #eee;
   display: flex;
   position: relative;
@@ -52,35 +49,35 @@ body {
 /* PAGES */
 .page {
   width: 50%;
-  padding: 60px;
+  padding: 55px;
   background: #fffaf0;
   box-sizing: border-box;
   position: relative;
-  font-size: 22px;     /* BIGGER TEXT */
-  line-height: 1.6;
+  font-size: 20px;
+  line-height: 1.7;
 }
 
 .header {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: bold;
-  border-bottom: 2px solid #ddd;
   margin-bottom: 20px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 8px;
 }
 
+/* PAGE NUMBERS */
 .page-number-left {
   position: absolute;
-  bottom: 20px;
-  left: 30px;
+  bottom: 18px;
+  left: 25px;
   color: gray;
-  font-size: 18px;
 }
 
 .page-number-right {
   position: absolute;
-  bottom: 20px;
-  right: 30px;
+  bottom: 18px;
+  right: 25px;
   color: gray;
-  font-size: 18px;
 }
 
 /* SPINE */
@@ -88,14 +85,14 @@ body {
   position: absolute;
   left: 50%;
   top: 0;
-  width: 36px;
+  width: 34px;
   height: 100%;
   transform: translateX(-50%);
   background: linear-gradient(
     to right,
-    rgba(0,0,0,0.3),
+    rgba(0,0,0,0.25),
     rgba(0,0,0,0.05),
-    rgba(0,0,0,0.3)
+    rgba(0,0,0,0.25)
   );
   pointer-events: none;
 }
@@ -106,36 +103,45 @@ body {
 
 <!-- TOOLBOX -->
 <div class="toolbox">
-  <div id="heart" class="tool" onclick="toggleFavorite()">❤️</div>
-  <div id="status" class="status"></div>
+  <div class="tool" onclick="location.href='favorite.html'">❤️</div>
   <div class="tool" onclick="location.href='index.html'">🏠</div>
 </div>
 
 <!-- BOOK -->
-<div class="book">
+<div class="book" id="book">
+
+  <!-- LEFT PAGE -->
   <div class="page">
     <div class="header">Max’s Family Perspective</div>
+
     <p>
       Hi, my name is Max. Thanksgiving is coming up, but there is one problem:
       Max and his family don’t have a turkey. They also don’t want to buy one.
     </p>
+
     <p>
-      Super randomly, turkeys come out at night for a reason. So Max’s family
-      made a trap and waited for a turkey.
+      Super randomly, turkeys come out at night for a reason.
+      So Max’s family made a trap and waited for a turkey.
     </p>
+
     <div class="page-number-left">1</div>
   </div>
 
+  <!-- RIGHT PAGE -->
   <div class="page">
     <div class="header">Turkey’s Perspective</div>
+
     <p>
-      That night, a turkey was scared. It was almost Thanksgiving, and you know
-      what that means for the turkey.
+      That night, a turkey was scared. It was almost Thanksgiving,
+      and you know what that means for the turkey.
+      Suddenly, the turkey saw something shiny.
     </p>
+
     <p>
-      Suddenly, the turkey saw something shiny. It was food. He ran as fast as
-      he could, like a cheetah.
+      As he approached, he noticed something — it was food!
+      So he ran as fast as he could, like a cheetah.
     </p>
+
     <div class="page-number-right">2</div>
   </div>
 
@@ -143,32 +149,20 @@ body {
 </div>
 
 <script>
-const heart = document.getElementById("heart");
-const status = document.getElementById("status");
+/* DISABLE CONTEXT MENU */
+document.addEventListener("contextmenu", e => e.preventDefault());
 
-function updateHeart() {
-  const fav = localStorage.getItem("favoriteBook");
-  heart.textContent = fav === "Turkey Capture" ? "❤️" : "🤍";
-}
-
-function showStatus(text) {
-  status.textContent = text;
-  setTimeout(() => status.textContent = "", 20000);
-}
-
-function toggleFavorite() {
-  const fav = localStorage.getItem("favoriteBook");
-  if (fav === "Turkey Capture") {
-    localStorage.removeItem("favoriteBook");
-    showStatus("Unfavorited");
-  } else {
-    localStorage.setItem("favoriteBook", "Turkey Capture");
-    showStatus("Favorited");
+/* LEFT CLICK & RIGHT CLICK NAVIGATION */
+document.addEventListener("mousedown", function (e) {
+  if (e.button === 0) {
+    // LEFT CLICK → BACK TO COVER
+    location.href = "turkey-cover.html";
   }
-  updateHeart();
-}
-
-updateHeart();
+  if (e.button === 2) {
+    // RIGHT CLICK → NEXT PAGE
+    location.href = "turkey-spread-2.html";
+  }
+});
 </script>
 
 </body>

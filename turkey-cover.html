@@ -5,16 +5,27 @@
 <title>Turkey Capture – Cover</title>
 
 <style>
-/* FULL SCREEN BACKGROUND (same as index.html) */
+/* BACKGROUND (same as index.html) */
 body {
   margin: 0;
   height: 100vh;
-  background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+  background: linear-gradient(
+    90deg,
+    red,
+    orange,
+    yellow,
+    green,
+    blue,
+    indigo,
+    violet
+  );
   background-size: 400% 400%;
   animation: rainbow 12s ease infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: Arial, sans-serif;
   overflow: hidden;
-  cursor: pointer;
 }
 
 @keyframes rainbow {
@@ -23,92 +34,87 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* CENTER COVER */
-.cover-wrapper {
-  position: absolute;
-  inset: 0;
+/* TOOLBOX */
+.toolbox {
+  position: fixed;
+  top: 18px;
+  right: 20px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 1000;
 }
 
-.cover {
-  max-height: 90vh;
-  max-width: 80vw;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+.tool {
+  font-size: 26px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.95);
+  padding: 10px 12px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+  text-align: center;
+}
+
+/* COVER CONTAINER */
+.cover-wrapper {
+  cursor: pointer;
+  text-align: center;
 }
 
 /* TITLE */
-.title {
-  position: absolute;
-  top: 25px;
-  width: 100%;
-  text-align: center;
-  font-size: 42px;
+.cover-title {
+  font-size: 46px;
   font-weight: bold;
   color: white;
-  text-shadow: 3px 3px 8px rgba(0,0,0,0.6);
+  text-shadow: 3px 3px 10px rgba(0,0,0,0.6);
+  margin-bottom: 20px;
 }
 
-/* AUTHOR / ILLUSTRATOR */
-.footer-text {
-  position: absolute;
-  bottom: 25px;
-  width: 100%;
-  text-align: center;
+/* COVER IMAGE (RECTANGLE) */
+.cover-image {
+  width: 520px;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 25px 45px rgba(0,0,0,0.5);
+}
+
+/* AUTHOR TEXT */
+.cover-author {
+  margin-top: 18px;
   font-size: 20px;
   color: white;
   text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
 }
-
-/* TOOLBOX */
-.toolbox {
-  position: fixed;
-  top: 15px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  font-size: 26px;
-  z-index: 1000;
-}
-
-.toolbox span {
-  cursor: pointer;
-  user-select: none;
-}
 </style>
 </head>
 
-<body onclick="goNext()">
-
-<!-- TITLE -->
-<div class="title">Turkey Capture</div>
+<body>
 
 <!-- TOOLBOX -->
-<div class="toolbox" onclick="event.stopPropagation()">
-  <span onclick="location.href='favorite.html'">❤️</span>
-  <span onclick="location.href='index.html'">🏠</span>
+<div class="toolbox">
+  <div class="tool" onclick="location.href='favorite.html'">❤️</div>
+  <div class="tool" onclick="location.href='index.html'">🏠</div>
 </div>
 
-<!-- COVER IMAGE -->
-<div class="cover-wrapper">
-  <img src="Capture.PNG" alt="Turkey Capture Cover" class="cover">
-</div>
+<!-- COVER -->
+<div class="cover-wrapper" onclick="goNext()">
 
-<!-- FOOTER -->
-<div class="footer-text">
-  Written & Illustrated by Harvey
+  <div class="cover-title">Turkey Capture</div>
+
+  <!-- IMPORTANT: FILE NAME MUST MATCH EXACTLY -->
+  <img src="Capture.PNG" alt="Turkey Capture Cover" class="cover-image">
+
+  <div class="cover-author">
+    Written by <b>Felo</b><br>
+    Illustrated by <b>Harvey</b>
+  </div>
+
 </div>
 
 <script>
-/* CLICK ANYWHERE → NEXT PAGE */
 function goNext() {
   location.href = "turkey-spread-1.html";
 }
-
-/* DISABLE RIGHT CLICK */
-document.addEventListener("contextmenu", e => e.preventDefault());
 </script>
 
 </body>

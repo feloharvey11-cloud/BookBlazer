@@ -1,69 +1,88 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Turkey Capture – Cover</title>
-  <style>
-    body {
-      background-image: url("Capture.PNG");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      font-family: Arial, sans-serif;
-      color: white;
-      text-shadow: 2px 2px 4px black;
-      padding: 40px;
-      height: 100vh;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-    }
+<meta charset="UTF-8">
+<title>Turkey Capture – Cover</title>
 
-    h1 {
-      font-size: 60px;
-      font-weight: bold;
-      margin-bottom: 15px;
-    }
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #7b4a12, #c98b3a);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Georgia, serif;
+  user-select: none;
+}
 
-    .credits {
-      font-size: 26px;
-      line-height: 1.4;
-      margin-bottom: 25px;
-    }
+/* BOOK COVER */
+.cover {
+  width: 900px;
+  height: 520px;
+  background: #4b2e0f;
+  color: #fff;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 8px solid #2b1606;
+  position: relative;
+}
 
-    .button-row {
-      display: flex;
-      gap: 20px;
-    }
+/* TITLE */
+.cover h1 {
+  font-size: 64px;
+  margin: 0;
+  text-shadow: 4px 4px 10px black;
+}
 
-    .button {
-      padding: 12px 25px;
-      font-size: 22px;
-      background-color: white;
-      color: black;
-      text-decoration: none;
-      border-radius: 10px;
-      border: 2px solid black;
-    }
+/* SUBTITLE */
+.cover h2 {
+  font-size: 28px;
+  margin-top: 15px;
+  font-weight: normal;
+  opacity: 0.9;
+}
 
-    .button:hover {
-      background-color: #eee;
-    }
-  </style>
+/* AUTHOR */
+.cover .author {
+  position: absolute;
+  bottom: 25px;
+  font-size: 22px;
+  opacity: 0.85;
+}
+
+/* SMALL NOTE */
+.note {
+  position: fixed;
+  bottom: 15px;
+  right: 20px;
+  font-size: 14px;
+  color: #eee;
+  opacity: 0.7;
+}
+</style>
 </head>
+
 <body>
 
+<div class="cover">
   <h1>Turkey Capture</h1>
+  <h2>A Thanksgiving Story</h2>
+  <div class="author">By Felo • Illustrated by Harvey</div>
+</div>
 
-  <div class="credits">
-    By Felo<br>
-    Illustrator: Harvey
-  </div>
+<div class="note">Right‑click to continue ➡</div>
 
-  <div class="button-row">
-    <a class="button" href="turkey-spread-1.html">📖 Start Reading</a>
-    <a class="button" href="index.html">🏠 Home</a>
-  </div>
+<script>
+// DISABLE CONTEXT MENU ACTION BUT USE RIGHT CLICK
+document.addEventListener("contextmenu", function (e) {
+  e.preventDefault();
+  window.location.href = "turkey-spread1.html";
+});
+</script>
 
 </body>
 </html>

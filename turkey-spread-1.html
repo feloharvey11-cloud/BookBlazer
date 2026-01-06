@@ -7,11 +7,11 @@
 <style>
 body {
   margin: 0;
-  background: #c9b9a9;
-  height: 100vh;
+  background: #bfae9f;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
   font-family: Georgia, serif;
 }
 
@@ -20,72 +20,67 @@ body {
   position: fixed;
   top: 15px;
   right: 20px;
-  background: white;
-  border-radius: 14px;
-  padding: 10px 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
   z-index: 1000;
 }
 
 .tool {
-  font-size: 24px;
   cursor: pointer;
+  font-size: 26px;
 }
 
 .status {
-  font-size: 14px;
-  color: #333;
-  height: 18px;
+  font-size: 15px;
+  color: #222;
 }
 
-/* BOOK */
-.book-wrapper {
-  position: relative;
-}
-
+/* BOOK (BIGGER) */
 .book {
-  width: 1100px;      /* ⬅️ BIGGER BOOK */
-  height: 620px;
+  width: 92vw;          /* BIG */
+  max-width: 1400px;   /* BIG */
+  height: 78vh;        /* BIG */
+  max-height: 750px;
   background: #eee;
   display: flex;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.35);
   position: relative;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
 }
 
+/* PAGES */
 .page {
   width: 50%;
-  padding: 55px;
+  padding: 60px;
   background: #fffaf0;
   box-sizing: border-box;
   position: relative;
-  line-height: 1.7;
-  font-size: 20px;
+  font-size: 22px;     /* BIGGER TEXT */
+  line-height: 1.6;
 }
 
 .header {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: bold;
   border-bottom: 2px solid #ddd;
-  margin-bottom: 18px;
-  padding-bottom: 6px;
+  margin-bottom: 20px;
 }
 
 .page-number-left {
   position: absolute;
-  bottom: 18px;
-  left: 25px;
+  bottom: 20px;
+  left: 30px;
   color: gray;
+  font-size: 18px;
 }
 
 .page-number-right {
   position: absolute;
-  bottom: 18px;
-  right: 25px;
+  bottom: 20px;
+  right: 30px;
   color: gray;
+  font-size: 18px;
 }
 
 /* SPINE */
@@ -93,31 +88,17 @@ body {
   position: absolute;
   left: 50%;
   top: 0;
-  width: 34px;
+  width: 36px;
   height: 100%;
   transform: translateX(-50%);
   background: linear-gradient(
     to right,
-    rgba(0,0,0,0.25),
+    rgba(0,0,0,0.3),
     rgba(0,0,0,0.05),
-    rgba(0,0,0,0.25)
+    rgba(0,0,0,0.3)
   );
   pointer-events: none;
 }
-
-/* CLICK ZONES */
-.click-left,
-.click-right {
-  position: absolute;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  cursor: pointer;
-  z-index: 5;
-}
-
-.click-left { left: 0; }
-.click-right { right: 0; }
 </style>
 </head>
 
@@ -125,63 +106,40 @@ body {
 
 <!-- TOOLBOX -->
 <div class="toolbox">
-  <div id="heart" class="tool" onclick="toggleFavorite()">🤍</div>
+  <div id="heart" class="tool" onclick="toggleFavorite()">❤️</div>
   <div id="status" class="status"></div>
   <div class="tool" onclick="location.href='index.html'">🏠</div>
 </div>
 
 <!-- BOOK -->
-<div class="book-wrapper">
-
-  <div class="book">
-    <!-- LEFT PAGE -->
-    <div class="page">
-      <div class="header">Max’s Family Perspective</div>
-
-      <p>
-        Hi, my name is Max. Thanksgiving is coming up, but there is one problem:
-        Max and his family don’t have a turkey. They also don’t want to buy one.
-      </p>
-
-      <p>
-        Super randomly, turkeys come out at night for a reason.
-        So Max’s family made a trap and waited for a turkey.
-      </p>
-
-      <div class="page-number-left">1</div>
-    </div>
-
-    <!-- RIGHT PAGE -->
-    <div class="page">
-      <div class="header">Turkey’s Perspective</div>
-
-      <p>
-        That night, a turkey was scared. It was almost Thanksgiving,
-        and you know what that means for the turkey.
-      </p>
-
-      <p>
-        Suddenly, the turkey saw something shiny. As he approached,
-        he noticed something—it was food! So he ran as fast as he could,
-        like a cheetah.
-      </p>
-
-      <p>
-        The food was inside a box. The only thing blocking him from the food
-        was a stick. It was heavy, but he pushed with all his might and was able
-        to knock the stick away.
-      </p>
-
-      <div class="page-number-right">2</div>
-    </div>
-
-    <div class="spine"></div>
+<div class="book">
+  <div class="page">
+    <div class="header">Max’s Family Perspective</div>
+    <p>
+      Hi, my name is Max. Thanksgiving is coming up, but there is one problem:
+      Max and his family don’t have a turkey. They also don’t want to buy one.
+    </p>
+    <p>
+      Super randomly, turkeys come out at night for a reason. So Max’s family
+      made a trap and waited for a turkey.
+    </p>
+    <div class="page-number-left">1</div>
   </div>
 
-  <!-- NAVIGATION CLICK AREAS -->
-  <div class="click-left" onclick="location.href='turkey-cover.html'"></div>
-  <div class="click-right" onclick="location.href='turkey-spread2.html'"></div>
+  <div class="page">
+    <div class="header">Turkey’s Perspective</div>
+    <p>
+      That night, a turkey was scared. It was almost Thanksgiving, and you know
+      what that means for the turkey.
+    </p>
+    <p>
+      Suddenly, the turkey saw something shiny. It was food. He ran as fast as
+      he could, like a cheetah.
+    </p>
+    <div class="page-number-right">2</div>
+  </div>
 
+  <div class="spine"></div>
 </div>
 
 <script>
@@ -190,7 +148,7 @@ const status = document.getElementById("status");
 
 function updateHeart() {
   const fav = localStorage.getItem("favoriteBook");
-  heart.textContent = (fav === "Turkey Capture") ? "❤️" : "🤍";
+  heart.textContent = fav === "Turkey Capture" ? "❤️" : "🤍";
 }
 
 function showStatus(text) {

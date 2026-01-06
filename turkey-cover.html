@@ -5,16 +5,20 @@
 <title>Turkey Capture – Cover</title>
 
 <style>
-body {
+html, body {
   margin: 0;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+}
+
+body {
   background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
   background-size: 400% 400%;
   animation: rainbow 12s ease infinite;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Arial, sans-serif;
+  overflow: hidden;
 }
 
 @keyframes rainbow {
@@ -23,103 +27,36 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-/* TOOLBOX */
-.toolbox {
-  position: fixed;
-  top: 15px;
-  right: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  z-index: 1000;
-}
-
-.tool {
-  font-size: 26px;
+/* COVER IMAGE */
+.cover {
+  max-width: 90vw;
+  max-height: 90vh;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.5);
   cursor: pointer;
   user-select: none;
-}
-
-.status {
-  font-size: 14px;
-  color: white;
-  text-align: center;
-}
-
-/* COVER */
-.cover {
-  width: 900px;
-  height: 520px;
-  background: white;
-  box-shadow: 0 25px 50px rgba(0,0,0,0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.cover img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  pointer-events: none;
 }
 </style>
 </head>
 
 <body>
 
-<!-- TOOLBOX -->
-<div class="toolbox">
-  <div id="heart" class="tool" onclick="toggleFavorite()">🤍</div>
-  <div id="status" class="status"></div>
-  <div class="tool" onclick="location.href='index.html'">🏠</div>
-</div>
-
-<!-- COVER -->
-<div class="cover" onclick="nextPage()">
-  <img src="Capture.PNG" alt="Turkey Capture Cover">
-</div>
+<img
+  src="Capture.PNG"
+  alt="Turkey Capture Cover"
+  class="cover"
+  id="cover"
+/>
 
 <script>
-const heart = document.getElementById("heart");
-const status = document.getElementById("status");
+// DISABLE DEFAULT RIGHT-CLICK MENU
+document.addEventListener("contextmenu", e => e.preventDefault());
 
-function updateHeart() {
-  if (localStorage.getItem("favoriteBook") === "Turkey Capture") {
-    heart.textContent = "❤️";
-  } else {
-    heart.textContent = "🤍";
+// RIGHT CLICK → NEXT PAGE
+document.getElementById("cover").addEventListener("mousedown", function (e) {
+  if (e.button === 2) { // right click
+    window.location.href = "turkey-spread1.html";
   }
-}
-
-function showStatus(text) {
-  status.textContent = text;
-  setTimeout(() => status.textContent = "", 20000);
-}
-
-function toggleFavorite() {
-  if (localStorage.getItem("favoriteBook") === "Turkey Capture") {
-    localStorage.removeItem("favoriteBook");
-    showStatus("Unfavorited");
-  } else {
-    localStorage.setItem("favoriteBook", "Turkey Capture");
-    showStatus("Favorited");
-  }
-  updateHeart();
-}
-
-function nextPage() {
-  location.href = "turkey-spread1.html";
-}
-
-/* RIGHT CLICK = NEXT PAGE */
-document.addEventListener("contextmenu", function(e) {
-  e.preventDefault();
-  nextPage();
 });
-
-updateHeart();
 </script>
 
 </body>
